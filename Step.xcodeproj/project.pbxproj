@@ -10,20 +10,9 @@
 		DC475DFF1A8E3EF3005853AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475DFE1A8E3EF3005853AD /* AppDelegate.swift */; };
 		DC475E011A8E3EF3005853AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475E001A8E3EF3005853AD /* ViewController.swift */; };
 		DC475E041A8E3EF3005853AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC475E021A8E3EF3005853AD /* Main.storyboard */; };
-		DC475E061A8E3EF3005853AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC475E051A8E3EF3005853AD /* Images.xcassets */; };
 		DC475E091A8E3EF3005853AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC475E071A8E3EF3005853AD /* LaunchScreen.xib */; };
-		DC475E151A8E3EF3005853AD /* StepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475E141A8E3EF3005853AD /* StepTests.swift */; };
+		DC475E1F1A8E41BB005853AD /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475E1E1A8E41BB005853AD /* StepProgressView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DC475E0F1A8E3EF3005853AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC475DF11A8E3EF3005853AD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC475DF81A8E3EF3005853AD;
-			remoteInfo = Step;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DC475DF91A8E3EF3005853AD /* Step.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,22 +20,12 @@
 		DC475DFE1A8E3EF3005853AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC475E001A8E3EF3005853AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DC475E031A8E3EF3005853AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DC475E051A8E3EF3005853AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC475E081A8E3EF3005853AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		DC475E0E1A8E3EF3005853AD /* StepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC475E131A8E3EF3005853AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC475E141A8E3EF3005853AD /* StepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTests.swift; sourceTree = "<group>"; };
+		DC475E1E1A8E41BB005853AD /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DC475DF61A8E3EF3005853AD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC475E0B1A8E3EF3005853AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,8 +38,8 @@
 		DC475DF01A8E3EF3005853AD = {
 			isa = PBXGroup;
 			children = (
+				DC475E1E1A8E41BB005853AD /* StepProgressView.swift */,
 				DC475DFB1A8E3EF3005853AD /* Step */,
-				DC475E111A8E3EF3005853AD /* StepTests */,
 				DC475DFA1A8E3EF3005853AD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				DC475DF91A8E3EF3005853AD /* Step.app */,
-				DC475E0E1A8E3EF3005853AD /* StepTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +58,6 @@
 				DC475DFE1A8E3EF3005853AD /* AppDelegate.swift */,
 				DC475E001A8E3EF3005853AD /* ViewController.swift */,
 				DC475E021A8E3EF3005853AD /* Main.storyboard */,
-				DC475E051A8E3EF3005853AD /* Images.xcassets */,
 				DC475E071A8E3EF3005853AD /* LaunchScreen.xib */,
 				DC475DFC1A8E3EF3005853AD /* Supporting Files */,
 			);
@@ -91,23 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				DC475DFD1A8E3EF3005853AD /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DC475E111A8E3EF3005853AD /* StepTests */ = {
-			isa = PBXGroup;
-			children = (
-				DC475E141A8E3EF3005853AD /* StepTests.swift */,
-				DC475E121A8E3EF3005853AD /* Supporting Files */,
-			);
-			path = StepTests;
-			sourceTree = "<group>";
-		};
-		DC475E121A8E3EF3005853AD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DC475E131A8E3EF3005853AD /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -132,24 +92,6 @@
 			productReference = DC475DF91A8E3EF3005853AD /* Step.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DC475E0D1A8E3EF3005853AD /* StepTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC475E1B1A8E3EF3005853AD /* Build configuration list for PBXNativeTarget "StepTests" */;
-			buildPhases = (
-				DC475E0A1A8E3EF3005853AD /* Sources */,
-				DC475E0B1A8E3EF3005853AD /* Frameworks */,
-				DC475E0C1A8E3EF3005853AD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC475E101A8E3EF3005853AD /* PBXTargetDependency */,
-			);
-			name = StepTests;
-			productName = StepTests;
-			productReference = DC475E0E1A8E3EF3005853AD /* StepTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,10 +103,6 @@
 				TargetAttributes = {
 					DC475DF81A8E3EF3005853AD = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					DC475E0D1A8E3EF3005853AD = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = DC475DF81A8E3EF3005853AD;
 					};
 				};
 			};
@@ -182,7 +120,6 @@
 			projectRoot = "";
 			targets = (
 				DC475DF81A8E3EF3005853AD /* Step */,
-				DC475E0D1A8E3EF3005853AD /* StepTests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,14 +131,6 @@
 			files = (
 				DC475E041A8E3EF3005853AD /* Main.storyboard in Resources */,
 				DC475E091A8E3EF3005853AD /* LaunchScreen.xib in Resources */,
-				DC475E061A8E3EF3005853AD /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC475E0C1A8E3EF3005853AD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,26 +143,11 @@
 			files = (
 				DC475E011A8E3EF3005853AD /* ViewController.swift in Sources */,
 				DC475DFF1A8E3EF3005853AD /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC475E0A1A8E3EF3005853AD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC475E151A8E3EF3005853AD /* StepTests.swift in Sources */,
+				DC475E1F1A8E41BB005853AD /* StepProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DC475E101A8E3EF3005853AD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC475DF81A8E3EF3005853AD /* Step */;
-			targetProxy = DC475E0F1A8E3EF3005853AD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DC475E021A8E3EF3005853AD /* Main.storyboard */ = {
@@ -354,40 +268,6 @@
 			};
 			name = Release;
 		};
-		DC475E1C1A8E3EF3005853AD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StepTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Step.app/Step";
-			};
-			name = Debug;
-		};
-		DC475E1D1A8E3EF3005853AD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StepTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Step.app/Step";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -405,14 +285,6 @@
 			buildConfigurations = (
 				DC475E191A8E3EF3005853AD /* Debug */,
 				DC475E1A1A8E3EF3005853AD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		DC475E1B1A8E3EF3005853AD /* Build configuration list for PBXNativeTarget "StepTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC475E1C1A8E3EF3005853AD /* Debug */,
-				DC475E1D1A8E3EF3005853AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
