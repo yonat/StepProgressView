@@ -73,30 +73,30 @@ class StepProgressView: UIView {
         if horizontalPadding.isZero {horizontalPadding = shapeSize / 2}
         if verticalPadding.isZero {verticalPadding = shapeSize}
 
+        var shape = firstStepShape
+        var prevView: UIView = self
+        var prevAttribute: NSLayoutAttribute = .Top
         for i in 0 ..< steps.count {
 
             // create step view
-            var shape: Shape
-            switch i {
-            case 0:             shape = firstStepShape
-            case steps.count-1: shape = lastStepShape
-            default:            shape = stepShape
-            }
+            if i == steps.count-1 {shape = lastStepShape}
+            else if i > 0  {shape = stepShape}
             let stepView = SingleStepView(text: steps[i], font: textFont, shape: shape, shapeSize: shapeSize, lineWidth: lineWidth, hPadding: horizontalPadding, vPadding: verticalPadding)
-            stepView.color(text: futureTextColor, stroke: futureStepColor, fill: futureStepFillColor, line: futureStepColor)
             addSubview(stepView)
             stepViews.append(stepView)
 
             // layout step view
-            let prevView = (i == 0) ? self : stepViews[i-1]
-            let prevAttribute: NSLayoutAttribute = (i == 0) ? .Top : .Bottom
             addConstraints([
                 NSLayoutConstraint(item: stepView, attribute: .Top, relatedBy: .Equal, toItem: prevView, attribute: prevAttribute, multiplier: 1, constant: 0),
                 NSLayoutConstraint(item: stepView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 0),
                 NSLayoutConstraint(item: stepView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
             ])
+            prevView = stepView
+            prevAttribute = .Bottom
         }
         stepViews.last?.lineView.hidden = true
+
+        colorSteps()
     }
 
     private func colorSteps() {
@@ -137,7 +137,6 @@ private class SingleStepView: UIView {
         textLabel.font = font
         textLabel.text = text
         textLabel.numberOfLines = 0
-        textLabel.sizeToFit()
         textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         addSubview(textLabel)
         addConstraints([
