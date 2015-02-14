@@ -41,11 +41,10 @@ class StepProgressView: UIView {
     var firstStepShape = Shape.Circle
     var lastStepShape = Shape.Square
 
-    var shapeSize: CGFloat = UIFont.systemFontSize()
     var lineWidth: CGFloat = 1
-    var verticalPadding: CGFloat = UIFont.systemFontSize() // between steps
-    var horizontalPadding: CGFloat = UIFont.systemFontSize() / 2 // between shape and text
-    var textFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    var textFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
+    var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
+    var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
 
     // MARK: - Colors
 
@@ -69,6 +68,10 @@ class StepProgressView: UIView {
     private func setupStepViews() {
         stepViews.map { $0.removeFromSuperview() }
         stepViews.removeAll(keepCapacity: true)
+
+        let shapeSize = textFont.pointSize * 1.2
+        if horizontalPadding.isZero {horizontalPadding = shapeSize / 2}
+        if verticalPadding.isZero {verticalPadding = shapeSize}
 
         for i in 0 ..< steps.count {
 
