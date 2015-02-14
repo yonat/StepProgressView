@@ -1,8 +1,16 @@
 //
 //  StepProgressView.swift
-//  Step
-//  Note: Currently the only supported order is:
-//      1. Set appearence properties. (optional)
+//  Show step-by-step progress.
+//
+//  Usage:
+//      progress = StepProgressView(frame: someFrame)
+//      progress.steps = ["First", "Second", "Third", "Last"]
+//      progress.currentStep = 0
+//      ... when all done:
+//      progress.currentStep = 4
+//
+//  Note: Currently the only supported usage order is:
+//      1. Set frame and appearence properties. (optional)
 //      2. Set steps.
 //      3. Change currentStep.
 //
@@ -91,11 +99,16 @@ class StepProgressView: UIView {
     private func colorSteps() {
         let n = stepViews.count
         if currentStep < n {
+            // color future steps
             stepViews[currentStep+1 ..< n].map { $0.color(text: self.futureTextColor, stroke: self.futureStepColor, fill: self.futureStepFillColor, line: self.futureStepColor) }
+
+            // color current step
             if currentStep >= 0 {
                 stepViews[currentStep].color(text: currentTextColor, stroke: currentStepColor, fill: currentStepFillColor, line: futureStepColor)
             }
         }
+
+        // color past steps
         if currentStep > 0 {
             stepViews[0 ..< currentStep].map { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
         }
