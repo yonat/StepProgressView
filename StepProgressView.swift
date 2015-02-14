@@ -20,7 +20,7 @@ class StepProgressView: UIView {
     var steps: [String] = []    { didSet {setupStepViews()} }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    var currentStep: Int = -1
+    var currentStep: Int = -1   { didSet {colorSteps()} }
 
     // MARK: - Appearance
 
@@ -41,20 +41,20 @@ class StepProgressView: UIView {
 
     // MARK: - Colors
 
-    var futureStepColor = UIColor.grayColor()
+    var futureStepColor = UIColor.lightGrayColor()
     var pastStepColor = UIColor.blackColor()
     var currentStepColor = UIColor.blackColor()
 
     var futureStepFillColor = UIColor.clearColor()
     var pastStepFillColor = UIColor.blackColor()
-    var currentStepFillColor = UIColor.clearColor()
+    var currentStepFillColor = UIColor.lightGrayColor()
 
-    var futureTextColor = UIColor.grayColor()
+    var futureTextColor = UIColor.lightGrayColor()
     var pastTextColor = UIColor.blackColor()
     var currentTextColor = UIColor.blackColor()
 
 
-    // MARK: - Layout
+    // MARK: - Private
 
     private var stepViews: [SingleStepView] = []
 
@@ -88,6 +88,18 @@ class StepProgressView: UIView {
         stepViews.last?.lineView.hidden = true
     }
 
+    private func colorSteps() {
+        let n = stepViews.count
+        if currentStep < n {
+            stepViews[currentStep+1 ..< n].map { $0.color(text: self.futureTextColor, stroke: self.futureStepColor, fill: self.futureStepFillColor, line: self.futureStepColor) }
+            if currentStep >= 0 {
+                stepViews[currentStep].color(text: currentTextColor, stroke: currentStepColor, fill: currentStepFillColor, line: futureStepColor)
+            }
+        }
+        if currentStep > 0 {
+            stepViews[0 ..< currentStep].map { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
+        }
+    }
 }
 
 private class SingleStepView: UIView {
