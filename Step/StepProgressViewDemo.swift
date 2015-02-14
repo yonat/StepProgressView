@@ -16,7 +16,7 @@ class StepProgressViewController: UIViewController {
         super.viewDidLoad()
 
         steps = StepProgressView(frame: contentFrame)
-        steps.steps = ["First", "Second", "Third", "Last"]
+        steps.steps = ["First", "Second", "Third can be very long and include a lot of unintersting text that spans several lines.", "Last"]
         view.addSubview(steps)
 
         let slider = UISlider(frame: view.bounds.rectsByDividing(128, fromEdge: CGRectEdge.MaxYEdge).slice.rectByInsetting(dx: 16, dy: 32))

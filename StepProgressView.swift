@@ -133,6 +133,7 @@ private class SingleStepView: UIView {
         // text
         textLabel.font = font
         textLabel.text = text
+        textLabel.numberOfLines = 0
         textLabel.sizeToFit()
         textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         addSubview(textLabel)
