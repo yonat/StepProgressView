@@ -9,11 +9,6 @@
 //      ... when all done:
 //      progress.currentStep = 4
 //
-//  Note: Currently the only supported usage order is:
-//      1. Set frame and appearence properties. (optional)
-//      2. Set steps.
-//      3. Change currentStep.
-//
 //  Created by Yonat Sharon on 13/2/15.
 //  Copyright (c) 2015 Yonat Sharon. All rights reserved.
 //
@@ -25,47 +20,90 @@ class StepProgressView: UIView {
     // MARK: - Behavior
 
     /// Titles of the step-by-step progression stages
-    var steps: [String] = []    { didSet {setupStepViews()} }
+    var steps: [String] = []                    { didSet {needsSetup = true} }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    var currentStep: Int = -1   { didSet {colorSteps()} }
+    var currentStep: Int = -1                   { didSet {needsColor = true} }
 
     // MARK: - Appearance
 
     enum Shape {
         case Circle
         case Square
+        case Triangle
+        case DownTriangle
+        case Rhombus
     }
 
-    var stepShape = Shape.Circle
-    var firstStepShape = Shape.Circle
-    var lastStepShape = Shape.Square
+    var stepShape: Shape = .Circle              { didSet {needsSetup = true} }
+    var firstStepShape: Shape = .Circle         { didSet {needsSetup = true} }
+    var lastStepShape: Shape = .Square          { didSet {needsSetup = true} }
 
-    var lineWidth: CGFloat = 1
-    var textFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
+    var lineWidth: CGFloat = 1                  { didSet {needsSetup = true} }
+    var textFont: UIFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
+        { didSet {needsSetup = true} }
+
     var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
+        { didSet {needsSetup = true} }
     var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
+        { didSet {needsSetup = true} }
 
     // MARK: - Colors
 
-    var futureStepColor = UIColor.lightGrayColor()
-    var pastStepColor = UIColor.blackColor()
-    var currentStepColor = UIColor.blackColor()
+    var futureStepColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    var pastStepColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    var currentStepColor: UIColor? = nil // nil => the view's tintColor
+        { didSet {needsColor = true} }
 
-    var futureStepFillColor = UIColor.clearColor()
-    var pastStepFillColor = UIColor.blackColor()
-    var currentStepFillColor = UIColor.lightGrayColor()
+    var futureStepFillColor:  UIColor = UIColor.clearColor() { didSet {needsColor = true} }
+    var pastStepFillColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    var currentStepFillColor: UIColor = UIColor.clearColor() { didSet {needsColor = true} }
 
-    var futureTextColor = UIColor.lightGrayColor()
-    var pastTextColor = UIColor.blackColor()
-    var currentTextColor = UIColor.blackColor()
+    var futureTextColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    var pastTextColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    var currentTextColor: UIColor? = nil // nil => the view's tintColor
+        { didSet {needsColor = true} }
 
+
+    // MARK: - Overrides
+
+    override func tintColorDidChange() {
+        if nil == currentStepColor || nil == currentTextColor {
+            needsColor = true
+        }
+    }
 
     // MARK: - Private
 
     private var stepViews: [SingleStepView] = []
 
+    private var needsSetup: Bool = false {
+        didSet {
+            if needsSetup && !oldValue {
+                dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                    if true == self?.needsSetup {
+                        self!.setupStepViews()
+                    }
+                }
+            }
+        }
+    }
+
+    private var needsColor: Bool = false {
+        didSet {
+            if needsColor && !oldValue {
+                dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                    if true == self?.needsColor {
+                        self!.colorSteps()
+                    }
+                }
+            }
+        }
+    }
+
     private func setupStepViews() {
+        needsSetup = false
+
         stepViews.map { $0.removeFromSuperview() }
         stepViews.removeAll(keepCapacity: true)
 
@@ -100,6 +138,8 @@ class StepProgressView: UIView {
     }
 
     private func colorSteps() {
+        needsColor = false
+
         let n = stepViews.count
         if currentStep < n {
             // color future steps
@@ -107,13 +147,13 @@ class StepProgressView: UIView {
 
             // color current step
             if currentStep >= 0 {
-                stepViews[currentStep].color(text: currentTextColor, stroke: currentStepColor, fill: currentStepFillColor, line: futureStepColor)
+                stepViews[currentStep].color(text: currentTextColor ?? tintColor, stroke: currentStepColor ?? tintColor, fill: currentStepFillColor, line: futureStepColor)
             }
         }
 
         // color past steps
         if currentStep > 0 {
-            stepViews[0 ..< currentStep].map { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
+            stepViews[0 ..< min(currentStep, n)].map { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
         }
     }
 }
@@ -168,10 +208,34 @@ private class SingleStepView: UIView {
 private extension UIBezierPath {
     convenience init(shape: StepProgressView.Shape, frame: CGRect) {
         switch shape {
+
         case .Circle:
             self.init(ovalInRect: frame)
+
         case .Square:
             self.init(rect: frame)
+
+        case .Triangle:
+            self.init()
+            moveToPoint(CGPoint(x: frame.midX, y: frame.minY))
+            addLineToPoint(CGPoint(x: frame.maxX, y: frame.maxY))
+            addLineToPoint(CGPoint(x: frame.minX, y: frame.maxY))
+            closePath()
+
+        case .DownTriangle:
+            self.init()
+            moveToPoint(CGPoint(x: frame.midX, y: frame.maxY))
+            addLineToPoint(CGPoint(x: frame.maxX, y: frame.minY))
+            addLineToPoint(CGPoint(x: frame.minX, y: frame.minY))
+            closePath()
+
+        case .Rhombus:
+            self.init()
+            moveToPoint(CGPoint(x: frame.midX, y: frame.minY))
+            addLineToPoint(CGPoint(x: frame.maxX, y: frame.midY))
+            addLineToPoint(CGPoint(x: frame.midX, y: frame.maxY))
+            addLineToPoint(CGPoint(x: frame.minX, y: frame.midY))
+            closePath()
         }
     }
 }
