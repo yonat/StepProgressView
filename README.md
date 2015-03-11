@@ -1,6 +1,5 @@
 # StepProgressView
-Step-by-step progress view to visualize processes that advance in stages.  
-Provides a more detailed replacement for UIActivityIndicatorView and UIProgressView.
+Step-by-step progress view with labels and shapes. A good replacement for UIActivityIndicatorView and UIProgressView.
 
 <p align="center">
 <img src="screenshots/blue.gif">
