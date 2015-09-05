@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "StepProgressView"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "Step-by-step progress view with labels and shapes. A good replacement for UIActivityIndicatorView and UIProgressView."
 
   s.description  = <<-DESC
@@ -28,7 +28,7 @@ progressView.currentStep = 4 // all done
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/yonat/StepProgressView.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/yonat/StepProgressView.git", :tag => s.version }
 
   s.source_files  = "StepProgressView.swift"
 

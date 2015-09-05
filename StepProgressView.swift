@@ -104,7 +104,7 @@ class StepProgressView: UIView {
     private func setupStepViews() {
         needsSetup = false
 
-        stepViews.map { $0.removeFromSuperview() }
+        stepViews.forEach { $0.removeFromSuperview() }
         stepViews.removeAll(keepCapacity: true)
 
         let shapeSize = textFont.pointSize * 1.2
@@ -143,7 +143,7 @@ class StepProgressView: UIView {
         let n = stepViews.count
         if currentStep < n {
             // color future steps
-            stepViews[currentStep+1 ..< n].map { $0.color(text: self.futureTextColor, stroke: self.futureStepColor, fill: self.futureStepFillColor, line: self.futureStepColor) }
+            stepViews[currentStep+1 ..< n].forEach { $0.color(text: self.futureTextColor, stroke: self.futureStepColor, fill: self.futureStepFillColor, line: self.futureStepColor) }
 
             // color current step
             if currentStep >= 0 {
@@ -153,7 +153,7 @@ class StepProgressView: UIView {
 
         // color past steps
         if currentStep > 0 {
-            stepViews[0 ..< min(currentStep, n)].map { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
+            stepViews[0 ..< min(currentStep, n)].forEach { $0.color(text: self.pastTextColor, stroke: self.pastStepColor, fill: self.pastStepFillColor, line: self.pastStepColor) }
         }
     }
 }
@@ -165,7 +165,7 @@ private class SingleStepView: UIView {
 
     convenience init(text: String, font: UIFont, shape: StepProgressView.Shape, shapeSize: CGFloat, lineWidth: CGFloat, hPadding: CGFloat, vPadding: CGFloat) {
         self.init()
-        setTranslatesAutoresizingMaskIntoConstraints(false)
+        translatesAutoresizingMaskIntoConstraints = false
 
         // shape
         shapeLayer.frame = CGRect(origin: CGPoint(x: floor(lineWidth/2), y: floor(lineWidth/2)), size: CGSize(width: shapeSize, height: shapeSize))
@@ -177,7 +177,7 @@ private class SingleStepView: UIView {
         textLabel.font = font
         textLabel.text = text
         textLabel.numberOfLines = 0
-        textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textLabel)
         addConstraints([
             NSLayoutConstraint(item: textLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0),
@@ -187,7 +187,7 @@ private class SingleStepView: UIView {
         ])
 
         // line to next step
-        lineView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        lineView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(lineView)
         addConstraints([
             NSLayoutConstraint(item: lineView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: shapeSize/2),
@@ -197,7 +197,7 @@ private class SingleStepView: UIView {
         ])
     }
 
-    func color(#text: UIColor, stroke: UIColor, fill: UIColor, line: UIColor) {
+    func color(text text: UIColor, stroke: UIColor, fill: UIColor, line: UIColor) {
         textLabel.textColor = text
         lineView.backgroundColor = line
         shapeLayer.strokeColor = stroke.CGColor

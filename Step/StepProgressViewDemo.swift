@@ -18,16 +18,16 @@ class StepProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
 
         // step progress
-        steps = StepProgressView(frame: contentFrame.rectByInsetting(dx: 0, dy: 32))
+        steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 32))
         steps.steps = firstSteps
         view.addSubview(steps)
 
         // current step slider
         let slider = UISlider()
-        slider.setTranslatesAutoresizingMaskIntoConstraints(false)
+        slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = -1
         slider.maximumValue = Float(7)
         slider.value = -1
@@ -58,14 +58,14 @@ class StepProgressViewController: UIViewController {
         let shapeSwitch = UISwitch(target: self, action: "shapeChanged:")
         view.addSubview(shapeSwitch)
 
-        let bindings = NSDictionary(dictionary: [
+        let bindings = [
             "slider": slider,
             "stepsLabel": stepsLabel, "stepsSwitch": stepsSwitch,
             "colorLabel": colorLabel, "colorSwitch": colorSwitch,
             "sizeLabel": sizeLabel, "sizeSwitch": sizeSwitch,
             "shapeLabel": shapeLabel, "shapeSwitch": shapeSwitch
-        ])
-        view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("|-[slider]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings) )
+        ]
+        view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("|-[slider]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings) )
         view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("V:[stepsLabel]-[stepsSwitch]-(24)-[colorLabel]-[colorSwitch]-(24)-[slider]-(24)-|", options: .AlignAllLeading, metrics: nil, views: bindings) )
         view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("V:[sizeLabel]-[sizeSwitch]-(24)-[shapeLabel]-[shapeSwitch]-(24)-[slider]", options: .AlignAllTrailing, metrics: nil, views: bindings) )
     }
@@ -100,8 +100,8 @@ class StepProgressViewController: UIViewController {
     }
 
     var contentFrame: CGRect {
-        let fullFrame = view.bounds.rectsByDividing(UIApplication.sharedApplication().statusBarFrame.maxY, fromEdge: CGRectEdge.MinYEdge).remainder
-        return fullFrame.rectByInsetting(dx: 16, dy: 16)
+        let fullFrame = view.bounds.divide(UIApplication.sharedApplication().statusBarFrame.maxY, fromEdge: CGRectEdge.MinYEdge).remainder
+        return fullFrame.insetBy(dx: 16, dy: 16)
     }
 }
 
@@ -110,7 +110,7 @@ private extension UILabel {
         self.init()
         self.text = text
         sizeToFit()
-        setTranslatesAutoresizingMaskIntoConstraints(false)
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
@@ -118,19 +118,19 @@ private extension UISwitch {
     convenience init(target: AnyObject, action: Selector) {
         self.init()
         addTarget(target, action: action, forControlEvents: .ValueChanged)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
 @UIApplicationMain
 class StepProgressViewDemo: UIResponder, UIApplicationDelegate {
 
-    lazy var window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    lazy var mainWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window.backgroundColor = UIColor.whiteColor()
-        window.rootViewController = StepProgressViewController()
-        window.makeKeyAndVisible()
+        mainWindow.backgroundColor = UIColor.whiteColor()
+        mainWindow.rootViewController = StepProgressViewController()
+        mainWindow.makeKeyAndVisible()
         return true
     }
 }
