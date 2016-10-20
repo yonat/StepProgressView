@@ -15,22 +15,22 @@
 
 import UIKit
 
-class StepProgressView: UIView {
+public class StepProgressView: UIView {
 
     // MARK: - Behavior
 
     /// Titles of the step-by-step progression stages
-    var steps: [String] = []                    { didSet {needsSetup = true} }
+    public var steps: [String] = []                 { didSet {needsSetup = true} }
 
     /// Optional additional text description for each step, shown below the step title
-    var details: [Int:String] = [:]             { didSet {needsSetup = true} }
+    public var details: [Int:String] = [:]          { didSet {needsSetup = true} }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    var currentStep: Int = -1                   { didSet {needsColor = true} }
+    public var currentStep: Int = -1                { didSet {needsColor = true} }
 
     // MARK: - Appearance
 
-    enum Shape {
+    public enum Shape {
         case Circle
         case Square
         case Triangle
@@ -38,43 +38,43 @@ class StepProgressView: UIView {
         case Rhombus
     }
 
-    var stepShape: Shape = .Circle              { didSet {needsSetup = true} }
-    var firstStepShape: Shape = .Circle         { didSet {needsSetup = true} }
-    var lastStepShape: Shape = .Square          { didSet {needsSetup = true} }
+    public var stepShape: Shape = .Circle           { didSet {needsSetup = true} }
+    public var firstStepShape: Shape = .Circle      { didSet {needsSetup = true} }
+    public var lastStepShape: Shape = .Square       { didSet {needsSetup = true} }
 
-    var lineWidth: CGFloat = 1                  { didSet {needsSetup = true} }
-    var textFont: UIFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
+    public var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
+    public var textFont: UIFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
         { didSet {needsSetup = true} }
-    var detailFont: UIFont = UIFont.systemFontOfSize( UIFont.systemFontSize() )
+    public var detailFont: UIFont = UIFont.systemFontOfSize( UIFont.systemFontSize() )
         { didSet {needsSetup = true} }
 
-    var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
+    public var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
         { didSet {needsSetup = true} }
-    var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
+    public var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
         { didSet {needsSetup = true} }
 
     // MARK: - Colors
 
-    var futureStepColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    var pastStepColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    var currentStepColor: UIColor? = nil // nil => the view's tintColor
+    public var futureStepColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    public var pastStepColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    public var currentStepColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
-    var currentDetailColor: UIColor? = UIColor.darkGrayColor() // nil => currentStepColor
+    public var currentDetailColor: UIColor? = UIColor.darkGrayColor() // nil => currentStepColor
         { didSet {needsColor = true} }
 
-    var futureStepFillColor:  UIColor = UIColor.clearColor() { didSet {needsColor = true} }
-    var pastStepFillColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    var currentStepFillColor: UIColor = UIColor.clearColor() { didSet {needsColor = true} }
+    public var futureStepFillColor:  UIColor = UIColor.clearColor() { didSet {needsColor = true} }
+    public var pastStepFillColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    public var currentStepFillColor: UIColor = UIColor.clearColor() { didSet {needsColor = true} }
 
-    var futureTextColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    var pastTextColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    var currentTextColor: UIColor? = nil // nil => the view's tintColor
+    public var futureTextColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    public var pastTextColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
+    public var currentTextColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
 
 
     // MARK: - Overrides
 
-    override func tintColorDidChange() {
+    override public func tintColorDidChange() {
         if nil == currentStepColor || nil == currentTextColor {
             needsColor = true
         }
