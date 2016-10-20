@@ -14,6 +14,7 @@ class StepProgressViewController: UIViewController {
 
     let firstSteps = ["First", "Second", "Third can be very long and include a lot of unintersting text that spans several lines.", "Last but not least"]
     let secondSteps = ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit", "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam", "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "Excepteur sint occaecat cupidatat non proident", "sunt in culpa qui officia deserunt mollit anim id est laborum"]
+    let details = [1: "Short descriotion", 3: "Kind of long rambling explanation that no one reads in reality."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class StepProgressViewController: UIViewController {
         // step progress
         steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 32))
         steps.steps = firstSteps
+        steps.details = details
         view.addSubview(steps)
 
         // current step slider
@@ -31,31 +33,31 @@ class StepProgressViewController: UIViewController {
         slider.minimumValue = -1
         slider.maximumValue = Float(7)
         slider.value = -1
-        slider.addTarget(self, action: "sliderChanged:", forControlEvents: .ValueChanged)
+        slider.addTarget(self, action: #selector(sliderChanged), forControlEvents: .ValueChanged)
         view.addSubview(slider)
 
         // steps switch
         let stepsLabel = UILabel(text: "Steps")
         view.addSubview(stepsLabel)
-        let stepsSwitch = UISwitch(target: self, action: "stepsChanged:")
+        let stepsSwitch = UISwitch(target: self, action: #selector(stepsChanged))
         view.addSubview(stepsSwitch)
 
         // color scheme switch
         let colorLabel = UILabel(text: "Colors")
         view.addSubview(colorLabel)
-        let colorSwitch = UISwitch(target: self, action: "colorsChanged:")
+        let colorSwitch = UISwitch(target: self, action: #selector(colorsChanged))
         view.addSubview(colorSwitch)
 
         // sizes switch
         let sizeLabel = UILabel(text: "Sizes")
         view.addSubview(sizeLabel)
-        let sizeSwitch = UISwitch(target: self, action: "sizeChanged:")
+        let sizeSwitch = UISwitch(target: self, action: #selector(sizeChanged))
         view.addSubview(sizeSwitch)
 
         // shapes switch
         let shapeLabel = UILabel(text: "Shapes")
         view.addSubview(shapeLabel)
-        let shapeSwitch = UISwitch(target: self, action: "shapeChanged:")
+        let shapeSwitch = UISwitch(target: self, action: #selector(shapeChanged))
         view.addSubview(shapeSwitch)
 
         let bindings = [
@@ -76,6 +78,7 @@ class StepProgressViewController: UIViewController {
 
     func stepsChanged(sender: UISwitch) {
         steps.steps = sender.on ? secondSteps : firstSteps
+        steps.details = sender.on ? [:] : details
     }
 
     func colorsChanged(sender: UISwitch) {
@@ -84,6 +87,7 @@ class StepProgressViewController: UIViewController {
         steps.pastStepFillColor = steps.pastStepColor
         steps.currentStepColor = sender.on ? UIColor.redColor() : nil
         steps.currentTextColor = steps.currentStepColor
+        steps.currentDetailColor = sender.on ? UIColor.brownColor() : UIColor.darkGrayColor()
         steps.futureStepColor = sender.on ? UIColor.grayColor() : UIColor.lightGrayColor()
     }
 

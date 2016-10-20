@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "StepProgressView"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "Step-by-step progress view with labels and shapes. A good replacement for UIActivityIndicatorView and UIProgressView."
 
   s.description  = <<-DESC
