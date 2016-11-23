@@ -10,11 +10,12 @@
 //      progress.currentStep = 4
 //
 //  Created by Yonat Sharon on 13/2/15.
-//  Copyright (c) 2015 Yonat Sharon. All rights reserved.
+//  Copyright (c) 2016 Yonat Sharon. All rights reserved.
 //
 
 import UIKit
 
+@IBDesignable
 open class StepProgressView: UIView {
 
     // MARK: - Behavior
@@ -42,42 +43,47 @@ open class StepProgressView: UIView {
     open var firstStepShape: Shape = .circle      { didSet {needsSetup = true} }
     open var lastStepShape: Shape = .square       { didSet {needsSetup = true} }
 
-    open var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
-    open var textFont: UIFont = UIFont.systemFont( ofSize: UIFont.buttonFontSize )
+    @IBInspectable open var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
+    @IBInspectable open var textFont: UIFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize)
         { didSet {needsSetup = true} }
-    open var detailFont: UIFont = UIFont.systemFont( ofSize: UIFont.systemFontSize )
+    @IBInspectable open var detailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         { didSet {needsSetup = true} }
 
-    open var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
+    @IBInspectable open var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
         { didSet {needsSetup = true} }
-    open var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
+    @IBInspectable open var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
         { didSet {needsSetup = true} }
 
     // MARK: - Colors
 
-    open var futureStepColor:  UIColor = UIColor.lightGray { didSet {needsColor = true} }
-    open var pastStepColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
-    open var currentStepColor: UIColor? = nil // nil => the view's tintColor
+    @IBInspectable open var futureStepColor:  UIColor = .lightGray { didSet {needsColor = true} }
+    @IBInspectable open var pastStepColor:    UIColor = .lightGray { didSet {needsColor = true} }
+    @IBInspectable open var currentStepColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
-    open var currentDetailColor: UIColor? = UIColor.darkGray // nil => currentStepColor
+    @IBInspectable open var currentDetailColor: UIColor? = .darkGray // nil => currentStepColor
         { didSet {needsColor = true} }
 
-    open var futureStepFillColor:  UIColor = UIColor.clear { didSet {needsColor = true} }
-    open var pastStepFillColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
-    open var currentStepFillColor: UIColor = UIColor.clear { didSet {needsColor = true} }
+    @IBInspectable open var futureStepFillColor:  UIColor = .clear { didSet {needsColor = true} }
+    @IBInspectable open var pastStepFillColor:    UIColor = .lightGray { didSet {needsColor = true} }
+    @IBInspectable open var currentStepFillColor: UIColor = .clear { didSet {needsColor = true} }
 
-    open var futureTextColor:  UIColor = UIColor.lightGray { didSet {needsColor = true} }
-    open var pastTextColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
-    open var currentTextColor: UIColor? = nil // nil => the view's tintColor
+    @IBInspectable open var futureTextColor:  UIColor = .lightGray { didSet {needsColor = true} }
+    @IBInspectable open var pastTextColor:    UIColor = .lightGray { didSet {needsColor = true} }
+    @IBInspectable open var currentTextColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
 
 
     // MARK: - Overrides
 
-    override open func tintColorDidChange() {
+    open override func tintColorDidChange() {
         if nil == currentStepColor || nil == currentTextColor {
             needsColor = true
         }
+    }
+
+    open override func prepareForInterfaceBuilder() {
+        steps = ["First Step", "Second Step", "This Step", "Last Step"]
+        details = [0: "The beginning", 3: "the end"]
     }
 
     // MARK: - Private

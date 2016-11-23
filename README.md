@@ -56,3 +56,22 @@ progressView.currentTextColor = .blue
 progressView.pastTextColor = .gray
 progressView.futureTextColor = .lightGray
 ```
+
+
+## Installation
+
+### CocoaPods:
+
+```ruby
+pod 'StepProgressView'
+```
+
+For legacy Swift 2.3:
+
+```ruby
+pod 'StepProgressView', '~> 1.2.1'
+```
+
+### Manually:
+
+Copy `StepProgressView.swift` to your Xcode project.
