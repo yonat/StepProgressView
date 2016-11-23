@@ -15,66 +15,66 @@
 
 import UIKit
 
-public class StepProgressView: UIView {
+open class StepProgressView: UIView {
 
     // MARK: - Behavior
 
     /// Titles of the step-by-step progression stages
-    public var steps: [String] = []                 { didSet {needsSetup = true} }
+    open var steps: [String] = []                 { didSet {needsSetup = true} }
 
     /// Optional additional text description for each step, shown below the step title
-    public var details: [Int:String] = [:]          { didSet {needsSetup = true} }
+    open var details: [Int:String] = [:]          { didSet {needsSetup = true} }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    public var currentStep: Int = -1                { didSet {needsColor = true} }
+    open var currentStep: Int = -1                { didSet {needsColor = true} }
 
     // MARK: - Appearance
 
     public enum Shape {
-        case Circle
-        case Square
-        case Triangle
-        case DownTriangle
-        case Rhombus
+        case circle
+        case square
+        case triangle
+        case downTriangle
+        case rhombus
     }
 
-    public var stepShape: Shape = .Circle           { didSet {needsSetup = true} }
-    public var firstStepShape: Shape = .Circle      { didSet {needsSetup = true} }
-    public var lastStepShape: Shape = .Square       { didSet {needsSetup = true} }
+    open var stepShape: Shape = .circle           { didSet {needsSetup = true} }
+    open var firstStepShape: Shape = .circle      { didSet {needsSetup = true} }
+    open var lastStepShape: Shape = .square       { didSet {needsSetup = true} }
 
-    public var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
-    public var textFont: UIFont = UIFont.systemFontOfSize( UIFont.buttonFontSize() )
+    open var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
+    open var textFont: UIFont = UIFont.systemFont( ofSize: UIFont.buttonFontSize )
         { didSet {needsSetup = true} }
-    public var detailFont: UIFont = UIFont.systemFontOfSize( UIFont.systemFontSize() )
+    open var detailFont: UIFont = UIFont.systemFont( ofSize: UIFont.systemFontSize )
         { didSet {needsSetup = true} }
 
-    public var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
+    open var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
         { didSet {needsSetup = true} }
-    public var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
+    open var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
         { didSet {needsSetup = true} }
 
     // MARK: - Colors
 
-    public var futureStepColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    public var pastStepColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    public var currentStepColor: UIColor? = nil // nil => the view's tintColor
+    open var futureStepColor:  UIColor = UIColor.lightGray { didSet {needsColor = true} }
+    open var pastStepColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
+    open var currentStepColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
-    public var currentDetailColor: UIColor? = UIColor.darkGrayColor() // nil => currentStepColor
+    open var currentDetailColor: UIColor? = UIColor.darkGray // nil => currentStepColor
         { didSet {needsColor = true} }
 
-    public var futureStepFillColor:  UIColor = UIColor.clearColor() { didSet {needsColor = true} }
-    public var pastStepFillColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    public var currentStepFillColor: UIColor = UIColor.clearColor() { didSet {needsColor = true} }
+    open var futureStepFillColor:  UIColor = UIColor.clear { didSet {needsColor = true} }
+    open var pastStepFillColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
+    open var currentStepFillColor: UIColor = UIColor.clear { didSet {needsColor = true} }
 
-    public var futureTextColor:  UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    public var pastTextColor:    UIColor = UIColor.lightGrayColor() { didSet {needsColor = true} }
-    public var currentTextColor: UIColor? = nil // nil => the view's tintColor
+    open var futureTextColor:  UIColor = UIColor.lightGray { didSet {needsColor = true} }
+    open var pastTextColor:    UIColor = UIColor.lightGray { didSet {needsColor = true} }
+    open var currentTextColor: UIColor? = nil // nil => the view's tintColor
         { didSet {needsColor = true} }
 
 
     // MARK: - Overrides
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         if nil == currentStepColor || nil == currentTextColor {
             needsColor = true
         }
@@ -87,7 +87,7 @@ public class StepProgressView: UIView {
     private var needsSetup: Bool = false {
         didSet {
             if needsSetup && !oldValue {
-                dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                DispatchQueue.main.async {[weak self] in
                     if true == self?.needsSetup {
                         self!.setupStepViews()
                     }
@@ -99,7 +99,7 @@ public class StepProgressView: UIView {
     private var needsColor: Bool = false {
         didSet {
             if needsColor && !oldValue {
-                dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                DispatchQueue.main.async {[weak self] in
                     if true == self?.needsColor {
                         self!.colorSteps()
                     }
@@ -112,7 +112,7 @@ public class StepProgressView: UIView {
         needsSetup = false
 
         stepViews.forEach { $0.removeFromSuperview() }
-        stepViews.removeAll(keepCapacity: true)
+        stepViews.removeAll(keepingCapacity: true)
 
         let shapeSize = textFont.pointSize * 1.2
         if horizontalPadding.isZero {horizontalPadding = shapeSize / 2}
@@ -120,7 +120,7 @@ public class StepProgressView: UIView {
 
         var shape = firstStepShape
         var prevView: UIView = self
-        var prevAttribute: NSLayoutAttribute = .Top
+        var prevAttribute: NSLayoutAttribute = .top
         for i in 0 ..< steps.count {
 
             // create step view
@@ -132,14 +132,14 @@ public class StepProgressView: UIView {
 
             // layout step view
             addConstraints([
-                NSLayoutConstraint(item: stepView, attribute: .Top, relatedBy: .Equal, toItem: prevView, attribute: prevAttribute, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: stepView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: stepView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
+                NSLayoutConstraint(item: stepView, attribute: .top, relatedBy: .equal, toItem: prevView, attribute: prevAttribute, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: stepView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: stepView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
             ])
             prevView = stepView
-            prevAttribute = .Bottom
+            prevAttribute = .bottom
         }
-        stepViews.last?.lineView.hidden = true
+        stepViews.last?.lineView.isHidden = true
 
         colorSteps()
     }
@@ -179,7 +179,7 @@ private class SingleStepView: UIView {
 
         // shape
         shapeLayer.frame = CGRect(origin: CGPoint(x: floor(lineWidth/2), y: floor(lineWidth/2)), size: CGSize(width: shapeSize, height: shapeSize))
-        shapeLayer.path = UIBezierPath(shape: shape, frame: shapeLayer.bounds).CGPath
+        shapeLayer.path = UIBezierPath(shape: shape, frame: shapeLayer.bounds).cgPath
         shapeLayer.lineWidth = lineWidth
         layer.addSublayer(shapeLayer)
 
@@ -190,9 +190,9 @@ private class SingleStepView: UIView {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textLabel)
         addConstraints([
-            NSLayoutConstraint(item: textLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: textLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: textLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: hPadding + shapeSize + lineWidth)
+            NSLayoutConstraint(item: textLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: textLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: textLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: hPadding + shapeSize + lineWidth)
         ])
 
         // detail
@@ -202,29 +202,29 @@ private class SingleStepView: UIView {
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(detailLabel)
         addConstraints([
-            NSLayoutConstraint(item: detailLabel, attribute: .Top, relatedBy: .Equal, toItem: textLabel, attribute: .Bottom, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .Trailing, relatedBy: .Equal, toItem: textLabel, attribute: .Trailing, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .Leading, relatedBy: .Equal, toItem: textLabel, attribute: .Leading, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -vPadding),
+            NSLayoutConstraint(item: detailLabel, attribute: .top, relatedBy: .equal, toItem: textLabel, attribute: .bottom, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: detailLabel, attribute: .trailing, relatedBy: .equal, toItem: textLabel, attribute: .trailing, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: detailLabel, attribute: .leading, relatedBy: .equal, toItem: textLabel, attribute: .leading, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: detailLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -vPadding),
         ])
 
         // line to next step
         lineView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(lineView)
         addConstraints([
-            NSLayoutConstraint(item: lineView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: shapeSize/2),
-            NSLayoutConstraint(item: lineView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: lineWidth),
-            NSLayoutConstraint(item: lineView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: shapeSize + lineWidth - 1),
-            NSLayoutConstraint(item: lineView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: shapeSize/2),
+            NSLayoutConstraint(item: lineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: lineWidth),
+            NSLayoutConstraint(item: lineView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: shapeSize + lineWidth - 1),
+            NSLayoutConstraint(item: lineView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0)
         ])
     }
 
-    func color(text text: UIColor, detail: UIColor, stroke: UIColor, fill: UIColor, line: UIColor) {
+    func color(text: UIColor, detail: UIColor, stroke: UIColor, fill: UIColor, line: UIColor) {
         textLabel.textColor = text
         detailLabel.textColor = detail
         lineView.backgroundColor = line
-        shapeLayer.strokeColor = stroke.CGColor
-        shapeLayer.fillColor = fill.CGColor
+        shapeLayer.strokeColor = stroke.cgColor
+        shapeLayer.fillColor = fill.cgColor
     }
 }
 
@@ -232,33 +232,33 @@ private extension UIBezierPath {
     convenience init(shape: StepProgressView.Shape, frame: CGRect) {
         switch shape {
 
-        case .Circle:
-            self.init(ovalInRect: frame)
+        case .circle:
+            self.init(ovalIn: frame)
 
-        case .Square:
+        case .square:
             self.init(rect: frame)
 
-        case .Triangle:
+        case .triangle:
             self.init()
-            moveToPoint(CGPoint(x: frame.midX, y: frame.minY))
-            addLineToPoint(CGPoint(x: frame.maxX, y: frame.maxY))
-            addLineToPoint(CGPoint(x: frame.minX, y: frame.maxY))
-            closePath()
+            move(to: CGPoint(x: frame.midX, y: frame.minY))
+            addLine(to: CGPoint(x: frame.maxX, y: frame.maxY))
+            addLine(to: CGPoint(x: frame.minX, y: frame.maxY))
+            close()
 
-        case .DownTriangle:
+        case .downTriangle:
             self.init()
-            moveToPoint(CGPoint(x: frame.midX, y: frame.maxY))
-            addLineToPoint(CGPoint(x: frame.maxX, y: frame.minY))
-            addLineToPoint(CGPoint(x: frame.minX, y: frame.minY))
-            closePath()
+            move(to: CGPoint(x: frame.midX, y: frame.maxY))
+            addLine(to: CGPoint(x: frame.maxX, y: frame.minY))
+            addLine(to: CGPoint(x: frame.minX, y: frame.minY))
+            close()
 
-        case .Rhombus:
+        case .rhombus:
             self.init()
-            moveToPoint(CGPoint(x: frame.midX, y: frame.minY))
-            addLineToPoint(CGPoint(x: frame.maxX, y: frame.midY))
-            addLineToPoint(CGPoint(x: frame.midX, y: frame.maxY))
-            addLineToPoint(CGPoint(x: frame.minX, y: frame.midY))
-            closePath()
+            move(to: CGPoint(x: frame.midX, y: frame.minY))
+            addLine(to: CGPoint(x: frame.maxX, y: frame.midY))
+            addLine(to: CGPoint(x: frame.midX, y: frame.maxY))
+            addLine(to: CGPoint(x: frame.minX, y: frame.midY))
+            close()
         }
     }
 }
