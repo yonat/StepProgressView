@@ -29,11 +29,19 @@ progressView.lastStepShape = .square
 // also available: .triangle, .downTriangle
 ```
 
-**Line and text size and font:**
+**Text fonts and sizes:**
+
+```swift
+progressView.textFont = myFont
+progressView.detailFont = anotherFont
+```
+
+**Line size spacing:**
 
 ```swift
 progressView.lineWidth = 2.5
-progressView.textFont = myFont
+progressView.verticalPadding = 8 // between steps (0 => default based on textFont)
+progressView.horizontalPadding: 8 // between shape and text (0 => default based on textFont)
 ```
 
 **Colors:**
@@ -55,6 +63,7 @@ progressView.futureStepFillColor = .lightGray
 progressView.currentTextColor = .blue
 progressView.pastTextColor = .gray
 progressView.futureTextColor = .lightGray
+progressView.currentDetailColor = .cyan // nil => use currentStepColor
 ```
 
 
