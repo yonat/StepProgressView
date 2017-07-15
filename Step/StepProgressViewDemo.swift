@@ -72,16 +72,16 @@ class StepProgressViewController: UIViewController {
         view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:[sizeLabel]-[sizeSwitch]-(24)-[shapeLabel]-[shapeSwitch]-(24)-[slider]", options: .alignAllTrailing, metrics: nil, views: bindings) )
     }
 
-    func sliderChanged(_ sender: UISlider) {
+    @objc func sliderChanged(_ sender: UISlider) {
         steps.currentStep = Int(sender.value)
     }
 
-    func stepsChanged(_ sender: UISwitch) {
+    @objc func stepsChanged(_ sender: UISwitch) {
         steps.steps = sender.isOn ? secondSteps : firstSteps
         steps.details = sender.isOn ? [:] : details
     }
 
-    func colorsChanged(_ sender: UISwitch) {
+    @objc func colorsChanged(_ sender: UISwitch) {
         steps.pastStepColor = sender.isOn ? UIColor.black : UIColor.lightGray
         steps.pastTextColor = steps.pastStepColor
         steps.pastStepFillColor = steps.pastStepColor
@@ -91,13 +91,13 @@ class StepProgressViewController: UIViewController {
         steps.futureStepColor = sender.isOn ? UIColor.gray : UIColor.lightGray
     }
 
-    func sizeChanged(_ sender: UISwitch) {
+    @objc func sizeChanged(_ sender: UISwitch) {
         steps.lineWidth = sender.isOn ? 3 : 1
         steps.textFont = sender.isOn ? UIFont.systemFont( ofSize: 1.5 * UIFont.buttonFontSize ) : UIFont.systemFont( ofSize: UIFont.buttonFontSize )
         steps.horizontalPadding  = sender.isOn ? 8 : 0
     }
 
-    func shapeChanged(_ sender: UISwitch) {
+    @objc func shapeChanged(_ sender: UISwitch) {
         steps.firstStepShape = sender.isOn ? .downTriangle : .circle
         steps.stepShape = sender.isOn ? .rhombus : .circle
         steps.lastStepShape = sender.isOn ? .triangle : .square
