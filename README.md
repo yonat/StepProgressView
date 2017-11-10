@@ -1,4 +1,7 @@
 # StepProgressView
+
+[![codebeat badge](https://codebeat.co/badges/a72dee94-02c0-43b9-bb48-8b844c3bab57)](https://codebeat.co/projects/github-com-yonat-stepprogressview)
+
 Step-by-step progress view with labels and shapes. A good replacement for UIActivityIndicatorView and UIProgressView.
 
 [![Swift Version][swift-image]][swift-url]
