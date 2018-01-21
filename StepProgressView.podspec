@@ -26,12 +26,10 @@ progressView.currentStep = 4 // all done
   s.author             = { "Yonat Sharon" => "yonat@ootips.org" }
   s.social_media_url   = "http://twitter.com/yonatsharon"
 
+  s.swift_version = '4.0'
   s.platform     = :ios, "8.0"
-
-  s.source       = { :git => "https://github.com/yonat/StepProgressView.git", :tag => s.version }
-
-  s.source_files  = "StepProgressView.swift"
-
   s.requires_arc = true
 
+  s.source       = { :git => "https://github.com/yonat/StepProgressView.git", :tag => s.version }
+  s.source_files  = "StepProgressView.swift"
 end
