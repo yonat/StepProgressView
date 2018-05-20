@@ -13,6 +13,7 @@
 //  Copyright (c) 2016 Yonat Sharon. All rights reserved.
 //
 
+import MiniLayout
 import UIKit
 
 @IBDesignable
@@ -21,13 +22,13 @@ open class StepProgressView: UIView {
     // MARK: - Behavior
 
     /// Titles of the step-by-step progression stages
-    open var steps: [String] = []                 { didSet {needsSetup = true} }
+    open var steps: [String] = [] { didSet { needsSetup = true } }
 
     /// Optional additional text description for each step, shown below the step title
-    open var details: [Int:String] = [:]          { didSet {needsSetup = true} }
+    open var details: [Int: String] = [:] { didSet { needsSetup = true } }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    open var currentStep: Int = -1                { didSet {needsColor = true} }
+    open var currentStep: Int = -1 { didSet { needsColor = true } }
 
     // MARK: - Appearance
 
@@ -39,39 +40,36 @@ open class StepProgressView: UIView {
         case rhombus
     }
 
-    open var stepShape: Shape = .circle           { didSet {needsSetup = true} }
-    open var firstStepShape: Shape = .circle      { didSet {needsSetup = true} }
-    open var lastStepShape: Shape = .square       { didSet {needsSetup = true} }
+    open var stepShape: Shape = .circle { didSet { needsSetup = true } }
+    open var firstStepShape: Shape = .circle { didSet { needsSetup = true } }
+    open var lastStepShape: Shape = .square { didSet { needsSetup = true } }
 
-    @IBInspectable open var lineWidth: CGFloat = 1               { didSet {needsSetup = true} }
-    @IBInspectable open var textFont: UIFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize)
-        { didSet {needsSetup = true} }
-    @IBInspectable open var detailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        { didSet {needsSetup = true} }
+    @IBInspectable open var lineWidth: CGFloat = 1 { didSet { needsSetup = true } }
+    open var textFont: UIFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
+    open var detailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
 
     @IBInspectable open var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
-        { didSet {needsSetup = true} }
+    { didSet { needsSetup = true } }
     @IBInspectable open var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
-        { didSet {needsSetup = true} }
+    { didSet { needsSetup = true } }
 
     // MARK: - Colors
 
-    @IBInspectable open var futureStepColor:  UIColor = .lightGray { didSet {needsColor = true} }
-    @IBInspectable open var pastStepColor:    UIColor = .lightGray { didSet {needsColor = true} }
-    @IBInspectable open var currentStepColor: UIColor? = nil // nil => the view's tintColor
-        { didSet {needsColor = true} }
+    @IBInspectable open var futureStepColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open var pastStepColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open var currentStepColor: UIColor? // nil => the view's tintColor
+    { didSet { needsColor = true } }
     @IBInspectable open var currentDetailColor: UIColor? = .darkGray // nil => currentStepColor
-        { didSet {needsColor = true} }
+    { didSet { needsColor = true } }
 
-    @IBInspectable open var futureStepFillColor:  UIColor = .clear { didSet {needsColor = true} }
-    @IBInspectable open var pastStepFillColor:    UIColor = .lightGray { didSet {needsColor = true} }
-    @IBInspectable open var currentStepFillColor: UIColor = .clear { didSet {needsColor = true} }
+    @IBInspectable open var futureStepFillColor: UIColor = .clear { didSet { needsColor = true } }
+    @IBInspectable open var pastStepFillColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open var currentStepFillColor: UIColor = .clear { didSet { needsColor = true } }
 
-    @IBInspectable open var futureTextColor:  UIColor = .lightGray { didSet {needsColor = true} }
-    @IBInspectable open var pastTextColor:    UIColor = .lightGray { didSet {needsColor = true} }
-    @IBInspectable open var currentTextColor: UIColor? = nil // nil => the view's tintColor
-        { didSet {needsColor = true} }
-
+    @IBInspectable open var futureTextColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open var pastTextColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open var currentTextColor: UIColor? // nil => the view's tintColor
+    { didSet { needsColor = true } }
 
     // MARK: - Overrides
 
@@ -82,6 +80,7 @@ open class StepProgressView: UIView {
     }
 
     open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
         steps = ["First Step", "Second Step", "This Step", "Last Step"]
         details = [0: "The beginning", 3: "the end"]
     }
@@ -93,7 +92,7 @@ open class StepProgressView: UIView {
     private var needsSetup: Bool = false {
         didSet {
             if needsSetup && !oldValue {
-                DispatchQueue.main.async {[weak self] in
+                DispatchQueue.main.async { [weak self] in
                     if true == self?.needsSetup {
                         self!.setupStepViews()
                     }
@@ -105,7 +104,7 @@ open class StepProgressView: UIView {
     private var needsColor: Bool = false {
         didSet {
             if needsColor && !oldValue {
-                DispatchQueue.main.async {[weak self] in
+                DispatchQueue.main.async { [weak self] in
                     if true == self?.needsColor {
                         self!.colorSteps()
                     }
@@ -121,27 +120,35 @@ open class StepProgressView: UIView {
         stepViews.removeAll(keepingCapacity: true)
 
         let shapeSize = textFont.pointSize * 1.2
-        if horizontalPadding.isZero {horizontalPadding = shapeSize / 2}
-        if verticalPadding.isZero {verticalPadding = shapeSize}
+        if horizontalPadding.isZero { horizontalPadding = shapeSize / 2 }
+        if verticalPadding.isZero { verticalPadding = shapeSize }
 
         var shape = firstStepShape
         var prevView: UIView = self
         var prevAttribute: NSLayoutAttribute = .top
         for i in 0 ..< steps.count {
-
             // create step view
-            if i == steps.count-1 {shape = lastStepShape}
-            else if i > 0  {shape = stepShape}
-            let stepView = SingleStepView(text: steps[i], detail: details[i], font: textFont, detailFont: detailFont, shape: shape, shapeSize: shapeSize, lineWidth: lineWidth, hPadding: horizontalPadding, vPadding: verticalPadding)
-            addSubview(stepView)
+            if i == steps.count - 1 {
+                shape = lastStepShape
+            } else if i > 0 {
+                shape = stepShape
+            }
+            let stepView = SingleStepView(
+                text: steps[i],
+                detail: details[i],
+                font: textFont, detailFont:
+                detailFont,
+                shape: shape,
+                shapeSize: shapeSize,
+                lineWidth: lineWidth,
+                hPadding: horizontalPadding,
+                vPadding: verticalPadding
+            )
             stepViews.append(stepView)
 
             // layout step view
-            addConstraints([
-                NSLayoutConstraint(item: stepView, attribute: .top, relatedBy: .equal, toItem: prevView, attribute: prevAttribute, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: stepView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: stepView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-            ])
+            addConstrainedSubview(stepView, constrain: .leading, .trailing)
+            constrain(stepView, at: .top, to: prevView, at: prevAttribute)
             prevView = stepView
             prevAttribute = .bottom
         }
@@ -156,7 +163,9 @@ open class StepProgressView: UIView {
         let n = stepViews.count
         if currentStep < n {
             // color future steps
-            stepViews[currentStep+1 ..< n].forEach { $0.color(text: futureTextColor, detail: futureTextColor, stroke: futureStepColor, fill: futureStepFillColor, line: futureStepColor) }
+            stepViews[currentStep + 1 ..< n].forEach {
+                $0.color(text: futureTextColor, detail: futureTextColor, stroke: futureStepColor, fill: futureStepFillColor, line: futureStepColor)
+            }
 
             // color current step
             if currentStep >= 0 {
@@ -168,7 +177,9 @@ open class StepProgressView: UIView {
 
         // color past steps
         if currentStep > 0 {
-            stepViews[0 ..< min(currentStep, n)].forEach { $0.color(text: pastTextColor, detail: pastTextColor, stroke: pastStepColor, fill: pastStepFillColor, line: pastStepColor) }
+            stepViews[0 ..< min(currentStep, n)].forEach {
+                $0.color(text: pastTextColor, detail: pastTextColor, stroke: pastStepColor, fill: pastStepFillColor, line: pastStepColor)
+            }
         }
     }
 }
@@ -184,7 +195,10 @@ private class SingleStepView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
 
         // shape
-        shapeLayer.frame = CGRect(origin: CGPoint(x: floor(lineWidth/2), y: floor(lineWidth/2)), size: CGSize(width: shapeSize, height: shapeSize))
+        shapeLayer.frame = CGRect(
+            origin: CGPoint(x: floor(lineWidth / 2), y: floor(lineWidth / 2)),
+            size: CGSize(width: shapeSize, height: shapeSize)
+        )
         shapeLayer.path = UIBezierPath(shape: shape, frame: shapeLayer.bounds).cgPath
         shapeLayer.lineWidth = lineWidth
         layer.addSublayer(shapeLayer)
@@ -194,12 +208,8 @@ private class SingleStepView: UIView {
         textLabel.text = text
         textLabel.numberOfLines = 0
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(textLabel)
-        addConstraints([
-            NSLayoutConstraint(item: textLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: textLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: textLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: hPadding + shapeSize + lineWidth)
-        ])
+        addConstrainedSubview(textLabel, constrain: .top, .trailing)
+        constrain(textLabel, at: .leading, diff: hPadding + shapeSize + lineWidth)
 
         // detail
         detailLabel.font = detailFont
@@ -207,22 +217,17 @@ private class SingleStepView: UIView {
         detailLabel.numberOfLines = 0
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(detailLabel)
-        addConstraints([
-            NSLayoutConstraint(item: detailLabel, attribute: .top, relatedBy: .equal, toItem: textLabel, attribute: .bottom, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .trailing, relatedBy: .equal, toItem: textLabel, attribute: .trailing, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .leading, relatedBy: .equal, toItem: textLabel, attribute: .leading, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: detailLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -vPadding),
-        ])
+        constrain(detailLabel, at: .top, to: textLabel, at: .bottom)
+        constrain(detailLabel, at: .trailing, to: textLabel)
+        constrain(detailLabel, at: .leading, to: textLabel)
+        constrain(detailLabel, at: .bottom, diff: -vPadding)
 
         // line to next step
         lineView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(lineView)
-        addConstraints([
-            NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: shapeSize/2),
-            NSLayoutConstraint(item: lineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: lineWidth),
-            NSLayoutConstraint(item: lineView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: shapeSize + lineWidth - 1),
-            NSLayoutConstraint(item: lineView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0)
-        ])
+        addConstrainedSubview(lineView, constrain: .bottom)
+        constrain(lineView, at: .leading, diff: shapeSize / 2)
+        constrain(lineView, at: .top, diff: shapeSize + lineWidth - 1)
+        lineView.constrain(.width, to: lineWidth)
     }
 
     func color(text: UIColor, detail: UIColor, stroke: UIColor, fill: UIColor, line: UIColor) {
@@ -237,7 +242,6 @@ private class SingleStepView: UIView {
 private extension UIBezierPath {
     convenience init(shape: StepProgressView.Shape, frame: CGRect) {
         switch shape {
-
         case .circle:
             self.init(ovalIn: frame)
 

@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC475DFF1A8E3EF3005853AD /* StepProgressViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475DFE1A8E3EF3005853AD /* StepProgressViewDemo.swift */; };
-		DC475E091A8E3EF3005853AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC475E071A8E3EF3005853AD /* LaunchScreen.xib */; };
-		DC475E1F1A8E41BB005853AD /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC475E1E1A8E41BB005853AD /* StepProgressView.swift */; };
+		59E7BA20B66C797A1A2FA2ED /* Pods_Step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275650BFB15B2138ED6A1587 /* Pods_Step.framework */; };
+		DC9DD88120B0B91F007E16DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9DD87D20B0B91F007E16DD /* LaunchScreen.xib */; };
+		DC9DD88320B0B91F007E16DD /* StepProgressViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DD88020B0B91F007E16DD /* StepProgressViewDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		275650BFB15B2138ED6A1587 /* Pods_Step.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Step.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86135C1A24871D9F8B06C776 /* Pods-Step.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step.release.xcconfig"; path = "Pods/Target Support Files/Pods-Step/Pods-Step.release.xcconfig"; sourceTree = "<group>"; };
+		DA8B0083C0BB161ED6F786F4 /* Pods-Step.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Step/Pods-Step.debug.xcconfig"; sourceTree = "<group>"; };
 		DC475DF91A8E3EF3005853AD /* Step.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC475DFD1A8E3EF3005853AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC475DFE1A8E3EF3005853AD /* StepProgressViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressViewDemo.swift; sourceTree = "<group>"; };
-		DC475E081A8E3EF3005853AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		DC475E1E1A8E41BB005853AD /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
+		DC9DD87E20B0B91F007E16DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DC9DD87F20B0B91F007E16DD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC9DD88020B0B91F007E16DD /* StepProgressViewDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressViewDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,18 +27,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E7BA20B66C797A1A2FA2ED /* Pods_Step.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		175065AE76A14B068E9DE39A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				275650BFB15B2138ED6A1587 /* Pods_Step.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DC475DF01A8E3EF3005853AD = {
 			isa = PBXGroup;
 			children = (
-				DC475E1E1A8E41BB005853AD /* StepProgressView.swift */,
-				DC475DFB1A8E3EF3005853AD /* Step */,
+				DC9DD87C20B0B91F007E16DD /* Step */,
 				DC475DFA1A8E3EF3005853AD /* Products */,
+				DEF962C7CC9A4BCC4CA32BFB /* Pods */,
+				175065AE76A14B068E9DE39A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -48,22 +60,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DC475DFB1A8E3EF3005853AD /* Step */ = {
+		DC9DD87C20B0B91F007E16DD /* Step */ = {
 			isa = PBXGroup;
 			children = (
-				DC475DFE1A8E3EF3005853AD /* StepProgressViewDemo.swift */,
-				DC475E071A8E3EF3005853AD /* LaunchScreen.xib */,
-				DC475DFC1A8E3EF3005853AD /* Supporting Files */,
+				DC9DD88020B0B91F007E16DD /* StepProgressViewDemo.swift */,
+				DC9DD87F20B0B91F007E16DD /* Info.plist */,
+				DC9DD87D20B0B91F007E16DD /* LaunchScreen.xib */,
 			);
 			path = Step;
 			sourceTree = "<group>";
 		};
-		DC475DFC1A8E3EF3005853AD /* Supporting Files */ = {
+		DEF962C7CC9A4BCC4CA32BFB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DC475DFD1A8E3EF3005853AD /* Info.plist */,
+				DA8B0083C0BB161ED6F786F4 /* Pods-Step.debug.xcconfig */,
+				86135C1A24871D9F8B06C776 /* Pods-Step.release.xcconfig */,
 			);
-			name = "Supporting Files";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,9 +86,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC475E181A8E3EF3005853AD /* Build configuration list for PBXNativeTarget "Step" */;
 			buildPhases = (
+				04140FBC4A84E553FC6A577F /* [CP] Check Pods Manifest.lock */,
+				DC9DD87620B0B1E4007E16DD /* ShellScript */,
 				DC475DF51A8E3EF3005853AD /* Sources */,
 				DC475DF61A8E3EF3005853AD /* Frameworks */,
 				DC475DF71A8E3EF3005853AD /* Resources */,
+				DC9DD87720B0B214007E16DD /* ShellScript */,
+				4992A0A4261E2D41779CEB94 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -100,7 +117,7 @@
 					DC475DF81A8E3EF3005853AD = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = YD52LXT846;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -127,29 +144,95 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC475E091A8E3EF3005853AD /* LaunchScreen.xib in Resources */,
+				DC9DD88120B0B91F007E16DD /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04140FBC4A84E553FC6A577F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Step-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4992A0A4261E2D41779CEB94 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Step/Pods-Step-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MiniLayout/MiniLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/StepProgressView/StepProgressView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MiniLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StepProgressView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step/Pods-Step-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC9DD87620B0B1E4007E16DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\nswiftformat --stripunusedargs unnamed-only \"${SRCROOT}/../Sources\"\nswiftformat --stripunusedargs unnamed-only \"${SRCROOT}\"\nfi";
+		};
+		DC9DD87720B0B214007E16DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --config \"${SRCROOT}/../Sources/.swiftlint.yml\"\ncd \"${SRCROOT}/../Sources\"\nswiftlint\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC475DF51A8E3EF3005853AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC475DFF1A8E3EF3005853AD /* StepProgressViewDemo.swift in Sources */,
-				DC475E1F1A8E41BB005853AD /* StepProgressView.swift in Sources */,
+				DC9DD88320B0B91F007E16DD /* StepProgressViewDemo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DC475E071A8E3EF3005853AD /* LaunchScreen.xib */ = {
+		DC9DD87D20B0B91F007E16DD /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DC475E081A8E3EF3005853AD /* Base */,
+				DC9DD87E20B0B91F007E16DD /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -258,8 +341,10 @@
 		};
 		DC475E191A8E3EF3005853AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA8B0083C0BB161ED6F786F4 /* Pods-Step.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Step/Info.plist;
@@ -267,14 +352,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roysharon.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		DC475E1A1A8E3EF3005853AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86135C1A24871D9F8B06C776 /* Pods-Step.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Step/Info.plist;

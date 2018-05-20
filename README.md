@@ -92,10 +92,6 @@ For legacy Swift 2.3:
 pod 'StepProgressView', '~> 1.2.1'
 ```
 
-### Manually:
-
-Copy `StepProgressView.swift` to your Xcode project.
-
 ## Meta
 
 [@yonatsharon](https://twitter.com/yonatsharon)

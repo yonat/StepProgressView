@@ -1,0 +1,5 @@
+use_frameworks!
+pod 'StepProgressView', :path => '..'
+
+target 'Step' do
+end

@@ -1,0 +1,23 @@
+PODS:
+  - MiniLayout (1.2.1)
+  - StepProgressView (1.4.0):
+    - MiniLayout
+
+DEPENDENCIES:
+  - StepProgressView (from `..`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MiniLayout
+
+EXTERNAL SOURCES:
+  StepProgressView:
+    :path: ".."
+
+SPEC CHECKSUMS:
+  MiniLayout: 9ee6ff0d73c1c2af09251e062e9b45d012e446fb
+  StepProgressView: 2a634db238ca2088e75385d415334df051717086
+
+PODFILE CHECKSUM: 843b8744052a16748b1dc8f314bc1541038838fa
+
+COCOAPODS: 1.5.0

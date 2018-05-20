@@ -6,27 +6,45 @@
 //  Copyright (c) 2015 Yonat Sharon. All rights reserved.
 //
 
+import StepProgressView
 import UIKit
 
 class StepProgressViewController: UIViewController {
-
     var steps: StepProgressView!
 
-    let firstSteps = ["First", "Second", "Third can be very long and include a lot of unintersting text that spans several lines.", "Last but not least"]
-    let secondSteps = ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit", "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam", "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", "Excepteur sint occaecat cupidatat non proident", "sunt in culpa qui officia deserunt mollit anim id est laborum"]
-    let details = [1: "Short descriotion", 3: "Kind of long rambling explanation that no one reads in reality."]
+    let firstSteps = [
+        "First",
+        "Second",
+        "Third can be very long and include a lot of unintersting text that spans several lines.",
+        "Last but not least",
+    ]
+    let secondSteps = [
+        "Lorem ipsum dolor sit amet",
+        "consectetur adipiscing elit",
+        "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+        "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+        "Excepteur sint occaecat cupidatat non proident",
+        "sunt in culpa qui officia deserunt mollit anim id est laborum",
+    ]
+    let details = [
+        1: "Short descriotion",
+        3: "Kind of long rambling explanation that no one reads in reality.",
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        // step progress
         steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 32))
         steps.steps = firstSteps
         steps.details = details
         view.addSubview(steps)
 
+        loadControls()
+    }
+
+    func loadControls() {
         // current step slider
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
@@ -65,11 +83,19 @@ class StepProgressViewController: UIViewController {
             "stepsLabel": stepsLabel, "stepsSwitch": stepsSwitch,
             "colorLabel": colorLabel, "colorSwitch": colorSwitch,
             "sizeLabel": sizeLabel, "sizeSwitch": sizeSwitch,
-            "shapeLabel": shapeLabel, "shapeSwitch": shapeSwitch
+            "shapeLabel": shapeLabel, "shapeSwitch": shapeSwitch,
         ]
-        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "|-[slider]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings) )
-        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:[stepsLabel]-[stepsSwitch]-(24)-[colorLabel]-[colorSwitch]-(24)-[slider]-(24)-|", options: .alignAllLeading, metrics: nil, views: bindings) )
-        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:[sizeLabel]-[sizeSwitch]-(24)-[shapeLabel]-[shapeSwitch]-(24)-[slider]", options: .alignAllTrailing, metrics: nil, views: bindings) )
+        addConstraints(withVisualFormat: "|-[slider]-|", views: bindings)
+        addConstraints(
+            withVisualFormat: "V:[stepsLabel]-[stepsSwitch]-(24)-[colorLabel]-[colorSwitch]-(24)-[slider]-(24)-|",
+            options: .alignAllLeading,
+            views: bindings
+        )
+        addConstraints(
+            withVisualFormat: "V:[sizeLabel]-[sizeSwitch]-(24)-[shapeLabel]-[shapeSwitch]-(24)-[slider]",
+            options: .alignAllTrailing,
+            views: bindings
+        )
     }
 
     @objc func sliderChanged(_ sender: UISlider) {
@@ -93,8 +119,8 @@ class StepProgressViewController: UIViewController {
 
     @objc func sizeChanged(_ sender: UISwitch) {
         steps.lineWidth = sender.isOn ? 3 : 1
-        steps.textFont = sender.isOn ? UIFont.systemFont( ofSize: 1.5 * UIFont.buttonFontSize ) : UIFont.systemFont( ofSize: UIFont.buttonFontSize )
-        steps.horizontalPadding  = sender.isOn ? 8 : 0
+        steps.textFont = sender.isOn ? UIFont.systemFont(ofSize: 1.5 * UIFont.buttonFontSize) : UIFont.systemFont(ofSize: UIFont.buttonFontSize)
+        steps.horizontalPadding = sender.isOn ? 8 : 0
     }
 
     @objc func shapeChanged(_ sender: UISwitch) {
@@ -106,6 +132,10 @@ class StepProgressViewController: UIViewController {
     var contentFrame: CGRect {
         let fullFrame = view.bounds.divided(atDistance: UIApplication.shared.statusBarFrame.maxY, from: CGRectEdge.minYEdge).remainder
         return fullFrame.insetBy(dx: 16, dy: 16)
+    }
+
+    func addConstraints(withVisualFormat format: String, options: NSLayoutFormatOptions = [], views: [String: Any]) {
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: nil, views: views))
     }
 }
 
@@ -128,7 +158,6 @@ private extension UISwitch {
 
 @UIApplicationMain
 class StepProgressViewDemo: UIResponder, UIApplicationDelegate {
-
     lazy var mainWindow = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -138,4 +167,3 @@ class StepProgressViewDemo: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
