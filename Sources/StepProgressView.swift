@@ -28,7 +28,12 @@ open class StepProgressView: UIView {
     open var details: [Int: String] = [:] { didSet { needsSetup = true } }
 
     /// Current active step: -1 = not started, steps.count = all done.
-    open var currentStep: Int = -1 { didSet { needsColor = true } }
+    open var currentStep: Int = -1 {
+        didSet {
+            needsColor = true
+            accessibilityValue = steps.indices.contains(currentStep) ? steps[currentStep] : nil
+        }
+    }
 
     // MARK: - Appearance
 
@@ -48,19 +53,22 @@ open class StepProgressView: UIView {
     open var textFont: UIFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
     open var detailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
 
-    @IBInspectable open var verticalPadding: CGFloat = 0 // between steps (0 => default based on textFont)
-    { didSet { needsSetup = true } }
-    @IBInspectable open var horizontalPadding: CGFloat = 0 // between shape and text (0 => default based on textFont)
-    { didSet { needsSetup = true } }
+    /// space between steps (0 => default based on textFont)
+    @IBInspectable open var verticalPadding: CGFloat = 0 { didSet { needsSetup = true } }
+
+    /// space between shape and text (0 => default based on textFont)
+    @IBInspectable open var horizontalPadding: CGFloat = 0 { didSet { needsSetup = true } }
 
     // MARK: - Colors
 
     @IBInspectable open var futureStepColor: UIColor = .lightGray { didSet { needsColor = true } }
     @IBInspectable open var pastStepColor: UIColor = .lightGray { didSet { needsColor = true } }
-    @IBInspectable open var currentStepColor: UIColor? // nil => the view's tintColor
-    { didSet { needsColor = true } }
-    @IBInspectable open var currentDetailColor: UIColor? = .darkGray // nil => currentStepColor
-    { didSet { needsColor = true } }
+
+    /// nil => use the view's tintColor
+    @IBInspectable open var currentStepColor: UIColor? { didSet { needsColor = true } }
+
+    /// nil => use currentStepColor
+    @IBInspectable open var currentDetailColor: UIColor? = .darkGray { didSet { needsColor = true } }
 
     @IBInspectable open var futureStepFillColor: UIColor = .clear { didSet { needsColor = true } }
     @IBInspectable open var pastStepFillColor: UIColor = .lightGray { didSet { needsColor = true } }
@@ -68,10 +76,21 @@ open class StepProgressView: UIView {
 
     @IBInspectable open var futureTextColor: UIColor = .lightGray { didSet { needsColor = true } }
     @IBInspectable open var pastTextColor: UIColor = .lightGray { didSet { needsColor = true } }
-    @IBInspectable open var currentTextColor: UIColor? // nil => the view's tintColor
-    { didSet { needsColor = true } }
+
+    /// nil => use the view's tintColor
+    @IBInspectable open var currentTextColor: UIColor? { didSet { needsColor = true } }
 
     // MARK: - Overrides
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        initAccessibility()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initAccessibility()
+    }
 
     open override func tintColorDidChange() {
         if nil == currentStepColor || nil == currentTextColor {
@@ -87,14 +106,20 @@ open class StepProgressView: UIView {
 
     // MARK: - Private
 
+    private func initAccessibility() {
+        isAccessibilityElement = true
+        accessibilityLabel = "Step Progress"
+        accessibilityIdentifier = "StepProgress"
+    }
+
     private var stepViews: [SingleStepView] = []
 
     private var needsSetup: Bool = false {
         didSet {
             if needsSetup && !oldValue {
                 DispatchQueue.main.async { [weak self] in
-                    if true == self?.needsSetup {
-                        self!.setupStepViews()
+                    if let strongSelf = self, strongSelf.needsSetup {
+                        strongSelf.setupStepViews()
                     }
                 }
             }
@@ -105,8 +130,8 @@ open class StepProgressView: UIView {
         didSet {
             if needsColor && !oldValue {
                 DispatchQueue.main.async { [weak self] in
-                    if true == self?.needsColor {
-                        self!.colorSteps()
+                    if let strongSelf = self, strongSelf.needsColor {
+                        strongSelf.colorSteps()
                     }
                 }
             }
