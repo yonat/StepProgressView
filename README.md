@@ -98,7 +98,7 @@ pod 'StepProgressView', '~> 1.2.1'
 
 [https://github.com/yonat/StepProgressView](https://github.com/yonat/StepProgressView)
 
-[swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
+[swift-image]:https://img.shields.io/badge/swift-4.0-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE.txt
