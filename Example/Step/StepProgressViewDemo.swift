@@ -134,7 +134,7 @@ class StepProgressViewController: UIViewController {
         return fullFrame.insetBy(dx: 16, dy: 16)
     }
 
-    func addConstraints(withVisualFormat format: String, options: NSLayoutFormatOptions = [], views: [String: Any]) {
+    func addConstraints(withVisualFormat format: String, options: NSLayoutConstraint.FormatOptions = [], views: [String: Any]) {
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: nil, views: views))
     }
 }
@@ -160,7 +160,7 @@ private extension UISwitch {
 class StepProgressViewDemo: UIResponder, UIApplicationDelegate {
     lazy var mainWindow = UIWindow(frame: UIScreen.main.bounds)
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         mainWindow.backgroundColor = UIColor.white
         mainWindow.rootViewController = StepProgressViewController()
         mainWindow.makeKeyAndVisible()

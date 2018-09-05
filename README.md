@@ -73,11 +73,6 @@ progressView.futureTextColor = .lightGray
 progressView.currentDetailColor = .cyan // nil => use currentStepColor
 ```
 
-## Requirements
-
-- iOS 8.0+
-- Xcode 7.3
-
 ## Installation
 
 ### CocoaPods:
@@ -86,11 +81,13 @@ progressView.currentDetailColor = .cyan // nil => use currentStepColor
 pod 'StepProgressView'
 ```
 
-For legacy Swift 2.3:
+Legacy versions:
 
-```ruby
-pod 'StepProgressView', '~> 1.2.1'
-```
+| Swift version | StepProgressView version |
+| :---: | :---: |
+| 4.0 | 1.4.1 |
+| 3 | 1.3.0 |
+| 2.3 | 1.2.1 |
 
 ## Meta
 
@@ -98,7 +95,7 @@ pod 'StepProgressView', '~> 1.2.1'
 
 [https://github.com/yonat/StepProgressView](https://github.com/yonat/StepProgressView)
 
-[swift-image]:https://img.shields.io/badge/swift-4.0-orange.svg
+[swift-image]:https://img.shields.io/badge/swift-4.2-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE.txt

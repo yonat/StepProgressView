@@ -18,7 +18,6 @@ import UIKit
 
 @IBDesignable
 open class StepProgressView: UIView {
-
     // MARK: - Behavior
 
     /// Titles of the step-by-step progression stages
@@ -150,7 +149,7 @@ open class StepProgressView: UIView {
 
         var shape = firstStepShape
         var prevView: UIView = self
-        var prevAttribute: NSLayoutAttribute = .top
+        var prevAttribute: NSLayoutConstraint.Attribute = .top
         for i in 0 ..< steps.count {
             // create step view
             if i == steps.count - 1 {
