@@ -84,10 +84,10 @@ pod 'StepProgressView'
 Legacy versions:
 
 | Swift version | StepProgressView version |
-| :---: | :---: |
-| 4.0 (Xcode 9.4) | `pod 'StepProgressView', '~> 1.4.1'` |
-| 3 | `pod 'StepProgressView', '~> 1.3.0'` |
-| 2.3 | `pod 'StepProgressView', '~> 1.2.1'` |
+| :---: | :--- |
+| 4.0 (Xcode 9.4) | `pod 'MiniLayout', '~> 1.2.1'`<br>`pod 'StepProgressView', '~> 1.4.1'` |
+| 3 | `pod 'MiniLayout', '~> 1.1.0'`<br>`pod 'StepProgressView', '~> 1.3.0'` |
+| 2.3 | `pod 'MiniLayout', '~> 1.0.1'`<br>`pod 'StepProgressView', '~> 1.2.1'` |
 
 ## Meta
 
