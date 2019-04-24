@@ -1,6 +1,7 @@
 //
 //  StepProgressView.swift
 //  Show step-by-step progress.
+//  swiftlint:disable custom_rules
 //
 //  Usage:
 //      progress = StepProgressView(frame: someFrame)
@@ -49,8 +50,8 @@ open class StepProgressView: UIView {
     open var lastStepShape: Shape = .square { didSet { needsSetup = true } }
 
     @IBInspectable open var lineWidth: CGFloat = 1 { didSet { needsSetup = true } }
-    open var textFont: UIFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
-    open var detailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
+    open var textFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
+    open var detailFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
 
     /// space between steps (0 => default based on textFont)
     @IBInspectable open var verticalPadding: CGFloat = 0 { didSet { needsSetup = true } }
@@ -195,7 +196,13 @@ open class StepProgressView: UIView {
             if currentStep >= 0 {
                 let textColor: UIColor = currentTextColor ?? tintColor
                 let detailColor = currentDetailColor ?? textColor
-                stepViews[currentStep].color(text: textColor, detail: detailColor, stroke: textColor, fill: currentStepFillColor, line: futureStepColor)
+                stepViews[currentStep].color(
+                    text: textColor,
+                    detail: detailColor,
+                    stroke: textColor,
+                    fill: currentStepFillColor,
+                    line: futureStepColor
+                )
             }
         }
 
@@ -209,10 +216,10 @@ open class StepProgressView: UIView {
 }
 
 private class SingleStepView: UIView {
-    var textLabel: UILabel = UILabel()
-    var detailLabel: UILabel = UILabel()
-    var shapeLayer: CAShapeLayer = CAShapeLayer()
-    var lineView: UIView = UIView()
+    var textLabel = UILabel()
+    var detailLabel = UILabel()
+    var shapeLayer = CAShapeLayer()
+    var lineView = UIView()
 
     convenience init(text: String, detail: String?, font: UIFont, detailFont: UIFont, shape: StepProgressView.Shape, shapeSize: CGFloat, lineWidth: CGFloat, hPadding: CGFloat, vPadding: CGFloat) {
         self.init()

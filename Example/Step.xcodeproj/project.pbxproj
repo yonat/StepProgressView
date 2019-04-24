@@ -87,12 +87,14 @@
 			buildConfigurationList = DC475E181A8E3EF3005853AD /* Build configuration list for PBXNativeTarget "Step" */;
 			buildPhases = (
 				04140FBC4A84E553FC6A577F /* [CP] Check Pods Manifest.lock */,
-				DC9DD87620B0B1E4007E16DD /* ShellScript */,
+				92F32CBA0CB54133BD9EEFE4 /* [CP-User] SwiftFormat */,
+				1AE1A7145CA8FFBFF1A4703D /* [CP-User] SwiftLintAutocorrect */,
 				DC475DF51A8E3EF3005853AD /* Sources */,
 				DC475DF61A8E3EF3005853AD /* Frameworks */,
 				DC475DF71A8E3EF3005853AD /* Resources */,
-				DC9DD87720B0B214007E16DD /* ShellScript */,
 				4992A0A4261E2D41779CEB94 /* [CP] Embed Pods Frameworks */,
+				DC8470E142ACB9EF47D7CAE4 /* [CP] Copy Pods Resources */,
+				703DB4F700976D5E158B2A0B /* [CP-User] SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -169,13 +171,32 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1AE1A7145CA8FFBFF1A4703D /* [CP-User] SwiftLintAutocorrect */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP-User] SwiftLintAutocorrect";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then ${PODS_ROOT}/SwiftLint/swiftlint autocorrect --config ${PODS_ROOT}/SwiftQuality/.swiftlint.yml --path ${SRCROOT}/.. ; fi";
+			showEnvVarsInLog = 0;
+		};
 		4992A0A4261E2D41779CEB94 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Step/Pods-Step-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Step/Pods-Step-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MiniLayout/MiniLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/StepProgressView/StepProgressView.framework",
 			);
@@ -186,34 +207,70 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step/Pods-Step-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Step/Pods-Step-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC9DD87620B0B1E4007E16DD /* ShellScript */ = {
+		703DB4F700976D5E158B2A0B /* [CP-User] SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+			);
+			name = "[CP-User] SwiftLint";
+			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\nswiftformat --stripunusedargs unnamed-only \"${SRCROOT}/../Sources\"\nswiftformat --stripunusedargs unnamed-only \"${SRCROOT}\"\nfi";
+			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then ${PODS_ROOT}/SwiftLint/swiftlint --config ${PODS_ROOT}/SwiftQuality/.swiftlint.yml --path ${SRCROOT}/.. ; fi";
+			showEnvVarsInLog = 0;
 		};
-		DC9DD87720B0B214007E16DD /* ShellScript */ = {
+		92F32CBA0CB54133BD9EEFE4 /* [CP-User] SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+			);
+			name = "[CP-User] SwiftFormat";
+			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --config \"${SRCROOT}/../Sources/.swiftlint.yml\"\ncd \"${SRCROOT}/../Sources\"\nswiftlint\nfi";
+			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then ${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat --swiftversion ${SWIFT_VERSION} --config ${PODS_ROOT}/SwiftQuality/.swiftformat ${SRCROOT}/.. ; fi";
+			showEnvVarsInLog = 0;
+		};
+		DC8470E142ACB9EF47D7CAE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Step/Pods-Step-resources.sh",
+				"${PODS_ROOT}/SwiftQuality/.swiftformat",
+				"${PODS_ROOT}/SwiftQuality/.swiftlint.yml",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/.swiftformat",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/.swiftlint.yml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Step/Pods-Step-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

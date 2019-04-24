@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Step
+//  swiftlint:disable commented_code
 //
 //  Created by Yonat Sharon on 13/2/15.
 //  Copyright (c) 2015 Yonat Sharon. All rights reserved.
@@ -10,7 +10,7 @@ import StepProgressView
 import UIKit
 
 class StepProgressViewController: UIViewController {
-    var steps: StepProgressView!
+    @IBOutlet var steps: StepProgressView!
 
     let firstSteps = [
         "First",
@@ -32,11 +32,13 @@ class StepProgressViewController: UIViewController {
         3: "Kind of long rambling explanation that no one reads in reality.",
     ]
 
+    let margin: CGFloat = 16
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 32))
+        steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 2 * margin))
         steps.steps = firstSteps
         steps.details = details
         view.addSubview(steps)
@@ -131,7 +133,7 @@ class StepProgressViewController: UIViewController {
 
     var contentFrame: CGRect {
         let fullFrame = view.bounds.divided(atDistance: UIApplication.shared.statusBarFrame.maxY, from: CGRectEdge.minYEdge).remainder
-        return fullFrame.insetBy(dx: 16, dy: 16)
+        return fullFrame.insetBy(dx: margin, dy: margin)
     }
 
     func addConstraints(withVisualFormat format: String, options: NSLayoutConstraint.FormatOptions = [], views: [String: Any]) {
