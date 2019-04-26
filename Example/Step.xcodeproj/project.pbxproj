@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		59E7BA20B66C797A1A2FA2ED /* Pods_Step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275650BFB15B2138ED6A1587 /* Pods_Step.framework */; };
+		DC3389B0227310270089435D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = DC3389AE227310270089435D /* CHANGELOG.md */; };
+		DC3389B1227310270089435D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DC3389AF227310270089435D /* README.md */; };
 		DC9DD88120B0B91F007E16DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9DD87D20B0B91F007E16DD /* LaunchScreen.xib */; };
 		DC9DD88320B0B91F007E16DD /* StepProgressViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DD88020B0B91F007E16DD /* StepProgressViewDemo.swift */; };
 /* End PBXBuildFile section */
@@ -16,6 +18,8 @@
 		275650BFB15B2138ED6A1587 /* Pods_Step.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Step.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86135C1A24871D9F8B06C776 /* Pods-Step.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step.release.xcconfig"; path = "Pods/Target Support Files/Pods-Step/Pods-Step.release.xcconfig"; sourceTree = "<group>"; };
 		DA8B0083C0BB161ED6F786F4 /* Pods-Step.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Step/Pods-Step.debug.xcconfig"; sourceTree = "<group>"; };
+		DC3389AE227310270089435D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
+		DC3389AF227310270089435D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DC475DF91A8E3EF3005853AD /* Step.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9DD87E20B0B91F007E16DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DC9DD87F20B0B91F007E16DD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +49,8 @@
 		DC475DF01A8E3EF3005853AD = {
 			isa = PBXGroup;
 			children = (
+				DC3389AE227310270089435D /* CHANGELOG.md */,
+				DC3389AF227310270089435D /* README.md */,
 				DC9DD87C20B0B91F007E16DD /* Step */,
 				DC475DFA1A8E3EF3005853AD /* Products */,
 				DEF962C7CC9A4BCC4CA32BFB /* Pods */,
@@ -146,7 +152,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3389B1227310270089435D /* README.md in Resources */,
 				DC9DD88120B0B91F007E16DD /* LaunchScreen.xib in Resources */,
+				DC3389B0227310270089435D /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

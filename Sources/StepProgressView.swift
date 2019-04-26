@@ -37,7 +37,7 @@ open class StepProgressView: UIView {
 
     // MARK: - Appearance
 
-    public enum Shape {
+    @objc public enum Shape: Int {
         case circle
         case square
         case triangle
@@ -45,40 +45,40 @@ open class StepProgressView: UIView {
         case rhombus
     }
 
-    open var stepShape: Shape = .circle { didSet { needsSetup = true } }
-    open var firstStepShape: Shape = .circle { didSet { needsSetup = true } }
-    open var lastStepShape: Shape = .square { didSet { needsSetup = true } }
+    @objc open dynamic var stepShape: Shape = .circle { didSet { needsSetup = true } }
+    @objc open dynamic var firstStepShape: Shape = .circle { didSet { needsSetup = true } }
+    @objc open dynamic var lastStepShape: Shape = .square { didSet { needsSetup = true } }
 
-    @IBInspectable open var lineWidth: CGFloat = 1 { didSet { needsSetup = true } }
-    open var textFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
-    open var detailFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
+    @IBInspectable open dynamic var lineWidth: CGFloat = 1 { didSet { needsSetup = true } }
+    @objc open dynamic var textFont = UIFont.systemFont(ofSize: UIFont.buttonFontSize) { didSet { needsSetup = true } }
+    @objc open dynamic var detailFont = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { needsSetup = true } }
 
     /// space between steps (0 => default based on textFont)
-    @IBInspectable open var verticalPadding: CGFloat = 0 { didSet { needsSetup = true } }
+    @IBInspectable open dynamic var verticalPadding: CGFloat = 0 { didSet { needsSetup = true } }
 
     /// space between shape and text (0 => default based on textFont)
-    @IBInspectable open var horizontalPadding: CGFloat = 0 { didSet { needsSetup = true } }
+    @IBInspectable open dynamic var horizontalPadding: CGFloat = 0 { didSet { needsSetup = true } }
 
     // MARK: - Colors
 
-    @IBInspectable open var futureStepColor: UIColor = .lightGray { didSet { needsColor = true } }
-    @IBInspectable open var pastStepColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var futureStepColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var pastStepColor: UIColor = .lightGray { didSet { needsColor = true } }
 
     /// nil => use the view's tintColor
-    @IBInspectable open var currentStepColor: UIColor? { didSet { needsColor = true } }
+    @IBInspectable open dynamic var currentStepColor: UIColor? { didSet { needsColor = true } }
 
     /// nil => use currentStepColor
-    @IBInspectable open var currentDetailColor: UIColor? = .darkGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var currentDetailColor: UIColor? = .darkGray { didSet { needsColor = true } }
 
-    @IBInspectable open var futureStepFillColor: UIColor = .clear { didSet { needsColor = true } }
-    @IBInspectable open var pastStepFillColor: UIColor = .lightGray { didSet { needsColor = true } }
-    @IBInspectable open var currentStepFillColor: UIColor = .clear { didSet { needsColor = true } }
+    @IBInspectable open dynamic var futureStepFillColor: UIColor = .clear { didSet { needsColor = true } }
+    @IBInspectable open dynamic var pastStepFillColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var currentStepFillColor: UIColor = .clear { didSet { needsColor = true } }
 
-    @IBInspectable open var futureTextColor: UIColor = .lightGray { didSet { needsColor = true } }
-    @IBInspectable open var pastTextColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var futureTextColor: UIColor = .lightGray { didSet { needsColor = true } }
+    @IBInspectable open dynamic var pastTextColor: UIColor = .lightGray { didSet { needsColor = true } }
 
     /// nil => use the view's tintColor
-    @IBInspectable open var currentTextColor: UIColor? { didSet { needsColor = true } }
+    @IBInspectable open dynamic var currentTextColor: UIColor? { didSet { needsColor = true } }
 
     // MARK: - Overrides
 

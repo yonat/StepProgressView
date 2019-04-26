@@ -27,6 +27,8 @@ progressView.currentStep = 4 // all done
 
 ## Changing Appearance
 
+The properties below can be set in Interface Builder, in code, or through a UIAppearance proxy (e.g., `StepProgressView.appearance().stepShape = .circle`).
+
 **Shape of the step icons:**
 
 ```swift
