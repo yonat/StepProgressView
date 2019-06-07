@@ -1,7 +1,6 @@
 //
 //  StepProgressView.swift
 //  Show step-by-step progress.
-//  swiftlint:disable custom_rules
 //
 //  Usage:
 //      progress = StepProgressView(frame: someFrame)

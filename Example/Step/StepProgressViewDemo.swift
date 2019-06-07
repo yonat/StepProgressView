@@ -1,6 +1,5 @@
 //
 //  AppDelegate.swift
-//  swiftlint:disable commented_code
 //
 //  Created by Yonat Sharon on 13/2/15.
 //  Copyright (c) 2015 Yonat Sharon. All rights reserved.
