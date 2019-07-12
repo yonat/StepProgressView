@@ -13,7 +13,7 @@
 //  Copyright (c) 2016 Yonat Sharon. All rights reserved.
 //
 
-import MiniLayout
+import SweeterSwift
 import UIKit
 
 @IBDesignable
@@ -222,7 +222,6 @@ private class SingleStepView: UIView {
 
     convenience init(text: String, detail: String?, font: UIFont, detailFont: UIFont, shape: StepProgressView.Shape, shapeSize: CGFloat, lineWidth: CGFloat, hPadding: CGFloat, vPadding: CGFloat) {
         self.init()
-        translatesAutoresizingMaskIntoConstraints = false
 
         // shape
         shapeLayer.frame = CGRect(
@@ -237,7 +236,6 @@ private class SingleStepView: UIView {
         textLabel.font = font
         textLabel.text = text
         textLabel.numberOfLines = 0
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
         addConstrainedSubview(textLabel, constrain: .top, .trailing)
         constrain(textLabel, at: .leading, diff: hPadding + shapeSize + lineWidth)
 
@@ -253,7 +251,6 @@ private class SingleStepView: UIView {
         constrain(detailLabel, at: .bottom, diff: -vPadding)
 
         // line to next step
-        lineView.translatesAutoresizingMaskIntoConstraints = false
         addConstrainedSubview(lineView, constrain: .bottom)
         constrain(lineView, at: .leading, diff: shapeSize / 2)
         constrain(lineView, at: .top, diff: shapeSize + lineWidth - 1)

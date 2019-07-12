@@ -198,13 +198,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Step/Pods-Step-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MiniLayout/MiniLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/StepProgressView/StepProgressView.framework",
+				"${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MiniLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StepProgressView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SweeterSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
