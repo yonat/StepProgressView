@@ -178,7 +178,7 @@ open class StepProgressView: UIView {
         }
         if let lastStepView = stepViews.last {
             lastStepView.lineView.isHidden = true
-            constrain(lastStepView, at: .bottom, relation: .greaterThanOrEqual)
+            constrain(lastStepView, at: .bottom)
         }
 
         colorSteps()
