@@ -36,11 +36,13 @@ class StepProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layoutMargins = UIEdgeInsets(top: margin * 2, left: margin, bottom: margin, right: margin)
 
-        steps = StepProgressView(frame: contentFrame.insetBy(dx: 0, dy: 2 * margin))
+        steps = StepProgressView()
         steps.steps = firstSteps
         steps.details = details
-        view.addSubview(steps)
+        view.addConstrainedSubview(steps, constrain: .leftMargin, .rightMargin, .topMargin)
+        steps.layoutMargins = .zero
 
         loadControls()
     }
