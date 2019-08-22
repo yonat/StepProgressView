@@ -24,7 +24,7 @@ progressView.currentStep = 4 // all done
   s.license      = { :type => "MIT", :file => "LICENSE.txt" }
 
   s.author             = { "Yonat Sharon" => "yonat@ootips.org" }
-  s.social_media_url   = "http://twitter.com/yonatsharon"
+  s.social_media_url   = "https://twitter.com/yonatsharon"
 
   s.swift_version = '4.2'
   s.swift_versions = ['4.2', '5.0']
@@ -35,5 +35,7 @@ progressView.currentStep = 4 // all done
   s.source_files  = "Sources/*.swift"
 
   s.dependency 'SweeterSwift'
+
+  s.pod_target_xcconfig = { 'LD_RUNPATH_SEARCH_PATHS' => '$(FRAMEWORK_SEARCH_PATHS)' } # fix Interface Builder render error
 
 end
