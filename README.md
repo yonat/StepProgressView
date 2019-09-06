@@ -91,6 +91,14 @@ Legacy versions:
 | 3 | `pod 'MiniLayout', '~> 1.1.0'`<br>`pod 'StepProgressView', '~> 1.3.0'` |
 | 2.3 | `pod 'MiniLayout', '~> 1.0.1'`<br>`pod 'StepProgressView', '~> 1.2.1'` |
 
+### Swift Package Manager:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/yonat/StepProgressView", from: "1.5.6")
+]
+```
+
 ## Meta
 
 [@yonatsharon](https://twitter.com/yonatsharon)
