@@ -1,7 +1,7 @@
 PODS:
   - StepProgressView (1.5.7):
     - SweeterSwift
-  - SweeterSwift (1.0.2)
+  - SweeterSwift (1.0.4)
   - SwiftFormat/CLI (0.40.10)
   - SwiftLint (0.34.0)
   - SwiftQuality (1.0.4):
