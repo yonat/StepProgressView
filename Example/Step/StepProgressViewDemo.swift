@@ -6,7 +6,12 @@
 //
 
 import StepProgressView
+import SweeterSwift
 import UIKit
+
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 
 class StepProgressViewController: UIViewController {
     @IBOutlet var steps: StepProgressView!
@@ -99,6 +104,20 @@ class StepProgressViewController: UIViewController {
             options: .alignAllTrailing,
             views: bindings
         )
+
+        // SwiftUI button
+        if #available(iOS 13.0, *) {
+            let showSwiftUIButton = UIButton(title: "Show in SwiftUI View", target: self, action: #selector(showSwiftUIDemo))
+            view.addConstrainedSubview(showSwiftUIButton, constrain: .rightMargin, .topMargin)
+            showSwiftUIButton.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+            showSwiftUIButton.layer.borderWidth = 1
+            let color = view.actualTintColor
+            showSwiftUIButton.setTitleColor(color, for: .normal)
+            showSwiftUIButton.layer.borderColor = color.cgColor
+            DispatchQueue.main.async {
+                showSwiftUIButton.layer.cornerRadius = showSwiftUIButton.frame.height / 2
+            }
+        }
     }
 
     @objc func sliderChanged(_ sender: UISlider) {
@@ -132,9 +151,12 @@ class StepProgressViewController: UIViewController {
         steps.lastStepShape = sender.isOn ? .triangle : .square
     }
 
-    var contentFrame: CGRect {
-        let fullFrame = view.bounds.divided(atDistance: UIApplication.shared.statusBarFrame.maxY, from: CGRectEdge.minYEdge).remainder
-        return fullFrame.insetBy(dx: margin, dy: margin)
+    @objc func showSwiftUIDemo() {
+        #if canImport(SwiftUI)
+        if #available(iOS 13.0, *) {
+            present(UIHostingController(rootView: StepsViewDemo()), animated: true)
+        }
+        #endif
     }
 
     func addConstraints(withVisualFormat format: String, options: NSLayoutConstraint.FormatOptions = [], views: [String: Any]) {
@@ -155,6 +177,15 @@ private extension UISwitch {
     convenience init(target: AnyObject, action: Selector) {
         self.init()
         addTarget(target, action: action, for: .valueChanged)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+
+private extension UIButton {
+    convenience init(title: String?, target: AnyObject, action: Selector) {
+        self.init()
+        setTitle(title, for: .normal)
+        addTarget(target, action: action, for: .touchUpInside)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
