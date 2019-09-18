@@ -63,7 +63,7 @@ struct StepsViewDemo: View {
     }
 }
 
-extension Double {
+private extension Double {
     var int: Int {
         get { Int(self) }
         set { self = Double(newValue) }
