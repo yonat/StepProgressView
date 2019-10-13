@@ -25,6 +25,10 @@ progressView.currentStep = 0 // started first step
 progressView.currentStep = 4 // all done
 ```
 
+### SwiftUI
+
+Use `StepsView` from the [swiftui branch](https://github.com/yonat/StepProgressView/tree/swiftui).
+
 ## Changing Appearance
 
 The properties below can be set in Interface Builder, in code, or through a UIAppearance proxy (e.g., `StepProgressView.appearance().stepShape = .circle`).
