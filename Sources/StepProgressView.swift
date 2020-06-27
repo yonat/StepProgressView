@@ -36,7 +36,8 @@ open class StepProgressView: UIView {
 
     // MARK: - Appearance
 
-    @objc public enum Shape: Int {
+    @objc(StepProgressViewShape)
+    public enum Shape: Int {
         case circle
         case square
         case triangle

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.5.7] - 2020-06-27
+
+### Changed
+- export `StepProgressView.Shape` to Objective-C as `StepProgressViewShape` in order to avoid conflict with other libraries' `Shape` type.
+
 ## [1.5.6] - 2019-08-22
 
 ### Added
