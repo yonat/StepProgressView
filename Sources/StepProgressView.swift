@@ -104,6 +104,15 @@ open class StepProgressView: UIView {
         details = [0: "The beginning", 3: "the end"]
     }
 
+    open override var intrinsicContentSize: CGSize {
+        if stepViews.isEmpty { return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric) }
+        let stepSizes = stepViews.map { $0.intrinsicContentSize }
+        return CGSize(
+            width: stepSizes.map { $0.width }.max() ?? 0,
+            height: stepSizes.map { $0.height }.reduce(0, +)
+        )
+    }
+
     // MARK: - Private
 
     private func initAccessibility() {
@@ -224,8 +233,14 @@ private class SingleStepView: UIView {
     var shapeLayer = CAShapeLayer()
     var lineView = UIView()
 
+    var leadingSpace: CGFloat = 0
+    var bottomSpace: CGFloat = 0
+
     convenience init(text: String, detail: String?, font: UIFont, detailFont: UIFont, shape: StepProgressView.Shape, shapeSize: CGFloat, lineWidth: CGFloat, hPadding: CGFloat, vPadding: CGFloat) {
         self.init()
+
+        leadingSpace = hPadding + shapeSize + lineWidth
+        bottomSpace = vPadding
 
         // shape
         shapeLayer.frame = CGRect(
@@ -241,7 +256,7 @@ private class SingleStepView: UIView {
         textLabel.text = text
         textLabel.numberOfLines = 0
         addConstrainedSubview(textLabel, constrain: .top, .trailing)
-        constrain(textLabel, at: .leading, diff: hPadding + shapeSize + lineWidth)
+        constrain(textLabel, at: .leading, diff: leadingSpace)
 
         // detail
         detailLabel.font = detailFont
@@ -267,6 +282,13 @@ private class SingleStepView: UIView {
         lineView.backgroundColor = line
         shapeLayer.strokeColor = stroke.cgColor
         shapeLayer.fillColor = fill.cgColor
+    }
+
+    override var intrinsicContentSize: CGSize {
+        var size = textLabel.intrinsicContentSize
+        size.width += leadingSpace
+        size.height += detailLabel.intrinsicContentSize.height + bottomSpace
+        return size
     }
 }
 

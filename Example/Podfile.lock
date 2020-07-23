@@ -1,5 +1,5 @@
 PODS:
-  - StepProgressView (1.5.6):
+  - StepProgressView (1.5.7):
     - SweeterSwift
   - SweeterSwift (1.0.2)
   - SwiftFormat/CLI (0.40.10)
@@ -30,7 +30,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/yonat/SwiftQuality
 
 SPEC CHECKSUMS:
-  StepProgressView: 93ca268c902134d34980dd1190694df850de97c0
+  StepProgressView: 6f23d95d0ebb912fc82dbd6a2ba96e805a0a7846
   SweeterSwift: a1251964a86f00441fd39605fd071d6255b97eed
   SwiftFormat: d0e2118da5bfccc0158f0b8eff80c476c5acd984
   SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
@@ -38,4 +38,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 31f67e26159d8199958492f570b085777cd451f6
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
