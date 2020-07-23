@@ -17,7 +17,10 @@ struct StepsViewDemo: View {
         VStack {
             HStack {
                 StepsView(currentStep: $currentStep.int, steps: ["First", "Second", "Third", "Done"])
+                    .fixedSize(horizontal: false, vertical: true)
+
                 Spacer()
+
                 StepsView(
                     currentStep: $currentStep.int,
                     steps: ["One", "Two", "Three", "Jinx"],
@@ -25,9 +28,12 @@ struct StepsViewDemo: View {
                     firstStepShape: .downTriangle,
                     lastStepShape: .triangle
                 )
+                .fixedSize(horizontal: true, vertical: false)
                 .accentColor(.purple)
             }
+
             Spacer()
+
             HStack {
                 StepsView(
                     currentStep: $currentStep.int,
@@ -40,20 +46,29 @@ struct StepsViewDemo: View {
                     futureTextColor: .brown,
                     pastTextColor: .blue
                 )
+                .roundedBorder()
+                .fixedSize()
                 .accentColor(.green)
+
+                Spacer()
+
                 StepsView(
                     currentStep: $currentStep.int,
                     steps: ["Lorem ipsum", "dolor sit amet", "consectetur", "adipiscing elit"],
                     details: [
-                        0: "sed do eiusmod tempor incididunt",
-                        1: "ut labore et dolore magna aliqua",
-                        2: "Ut enim ad minim veniam",
-                        3: "quis nostrud exercitation ullamco laboris",
+                        0: "sed do eiusmod tempor",
+                        1: "incididunt ut labore et dolore",
+                        2: "magna aliqua ut enim ad minim",
+                        3: "veniam quis nostrud",
                     ]
                 )
+                .fixedSize()
+                .roundedBorder()
                 .accentColor(.red)
             }
+
             Spacer()
+
             VStack {
                 Text("Change Current Step:").bold()
                 Slider(value: $currentStep, in: -1.0 ... 4.0, step: 1.0)
@@ -67,6 +82,17 @@ private extension Double {
     var int: Int {
         get { Int(self) }
         set { self = Double(newValue) }
+    }
+}
+
+@available(iOS 13.0, *)
+extension View {
+    func roundedBorder(_ radius: CGFloat = 16) -> some View {
+        padding(radius * 0.75)
+            .overlay(
+                RoundedRectangle(cornerRadius: radius)
+                    .stroke(Color.accentColor)
+            )
     }
 }
 

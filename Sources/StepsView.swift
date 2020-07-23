@@ -62,7 +62,7 @@ import SwiftUI
         uiView.pastTextColor =? pastTextColor
         uiView.currentTextColor =? currentTextColor
 
-        uiView.translatesAutoresizingMaskIntoConstraints = false
+        uiView.setupStepViews() // don't wait until next run loop
     }
 
     public func makeUIView(context: UIViewRepresentableContext<StepsView>) -> StepProgressView {

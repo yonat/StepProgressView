@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - calculate `intrinsicContentSize`.
+- make SwiftUI frame correctly respond to `.fixedSize(horizontal: false, vertical: true)`.
 
 ## [1.5.7] - 2020-06-27
 

@@ -147,7 +147,7 @@ open class StepProgressView: UIView {
         }
     }
 
-    private func setupStepViews() {
+    func setupStepViews() {
         needsSetup = false
 
         stepViews.forEach { $0.removeFromSuperview() }
