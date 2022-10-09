@@ -62,6 +62,7 @@ struct StepsViewDemo: View {
                         3: "veniam quis nostrud",
                     ]
                 )
+                .stepShape(.rhombus)
                 .fixedSize()
                 .roundedBorder()
                 .accentColor(.red)

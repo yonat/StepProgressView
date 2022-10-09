@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- add SwiftUI wrapper `StepsView`.
+- add SwiftUI wrapper `StepsView`. (Requires minimum deployment target iOS 11.0)
 
 ### Fixed
 - calculate `intrinsicContentSize`.

@@ -29,12 +29,13 @@ progressView.currentStep = 4 // all done
 
 ```swift
 StepsView(currentStep: $step, steps: ["First", "Second", "Third", "Done"])
+    .stepShape(.rhombus)
 ```
 
 ## Changing Appearance
 
 The properties below can be set in Interface Builder, in code, or through a UIAppearance proxy (e.g., `StepProgressView.appearance().stepShape = .circle`).
-When using SwiftUI you can set them in the `StepsView` initializer .
+When using SwiftUI you can set them in the `StepsView` initializer or using SwiftUI view modifiers.
 
 **Shape of the step icons:**
 

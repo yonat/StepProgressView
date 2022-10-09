@@ -82,7 +82,7 @@ open class StepProgressView: UIView {
 
     // MARK: - Overrides
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         initAccessibility()
     }
@@ -92,19 +92,19 @@ open class StepProgressView: UIView {
         initAccessibility()
     }
 
-    open override func tintColorDidChange() {
+    override open func tintColorDidChange() {
         if nil == currentStepColor || nil == currentTextColor {
             needsColor = true
         }
     }
 
-    open override func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         steps = ["First Step", "Second Step", "This Step", "Last Step"]
         details = [0: "The beginning", 3: "the end"]
     }
 
-    open override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         if stepViews.isEmpty { return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric) }
         let stepSizes = stepViews.map { $0.intrinsicContentSize }
         return CGSize(
