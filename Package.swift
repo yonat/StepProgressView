@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "StepProgressView", targets: ["StepProgressView"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/yonat/SweeterSwift", from: "1.0.2"),
+        .package(url: "https://github.com/yonat/SweeterSwift", from: "1.0.4"),
     ],
     targets: [
         .target(name: "StepProgressView", dependencies: ["SweeterSwift"], path: "Sources"),

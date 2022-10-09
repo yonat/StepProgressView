@@ -1,7 +1,7 @@
 PODS:
   - StepProgressView (1.5.7):
     - SweeterSwift
-  - SweeterSwift (1.0.2)
+  - SweeterSwift (1.0.4)
   - SwiftFormat/CLI (0.40.10)
   - SwiftLint (0.34.0)
   - SwiftQuality (1.0.4):
@@ -30,8 +30,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/yonat/SwiftQuality
 
 SPEC CHECKSUMS:
-  StepProgressView: 6f23d95d0ebb912fc82dbd6a2ba96e805a0a7846
-  SweeterSwift: a1251964a86f00441fd39605fd071d6255b97eed
+  StepProgressView: b48850557e5cc144462f3739cbf9ade6de1ccda6
+  SweeterSwift: fe0daffbcf89c9f6e4db1e9159b9c74696b26a13
   SwiftFormat: d0e2118da5bfccc0158f0b8eff80c476c5acd984
   SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
   SwiftQuality: b82257ee3bf1193fd2c01681438d71a5e5ae2f9a
