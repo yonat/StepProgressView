@@ -123,7 +123,7 @@ open class StepProgressView: UIView {
 
     private var stepViews: [SingleStepView] = []
 
-    private var needsSetup: Bool = false {
+    private var needsSetup = false {
         didSet {
             if needsSetup && !oldValue {
                 DispatchQueue.main.async { [weak self] in
@@ -135,7 +135,7 @@ open class StepProgressView: UIView {
         }
     }
 
-    private var needsColor: Bool = false {
+    private var needsColor = false {
         didSet {
             if needsColor && !oldValue {
                 DispatchQueue.main.async { [weak self] in

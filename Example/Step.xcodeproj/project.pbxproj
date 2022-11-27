@@ -188,13 +188,14 @@
 		};
 		1AE1A7145CA8FFBFF1A4703D /* [CP-User] SwiftLintAutocorrect */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			name = "[CP-User] SwiftLintAutocorrect";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then \"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect --config \"${PODS_ROOT}/SwiftQuality/.swiftlint.yml\" --path \"${SRCROOT}/..\" ; fi";
+			shellScript = "if [[ \"Debug\" == \"${CONFIGURATION}\" && ! $ENABLE_PREVIEWS == \"YES\" ]]; then \"${PODS_ROOT}/SwiftLint/swiftlint\" --fix --config \"${PODS_ROOT}/SwiftQuality/.swiftlint.yml\" \"${SRCROOT}/..\" ; fi";
 			showEnvVarsInLog = 0;
 		};
 		4992A0A4261E2D41779CEB94 /* [CP] Embed Pods Frameworks */ = {
@@ -219,24 +220,26 @@
 		};
 		703DB4F700976D5E158B2A0B /* [CP-User] SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			name = "[CP-User] SwiftLint";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then \"${PODS_ROOT}/SwiftLint/swiftlint\" --config \"${PODS_ROOT}/SwiftQuality/.swiftlint.yml\" --path \"${SRCROOT}/..\" ; fi";
+			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" && ! $ENABLE_PREVIEWS == \"YES\" ]; then \"${PODS_ROOT}/SwiftLint/swiftlint\" --config \"${PODS_ROOT}/SwiftQuality/.swiftlint.yml\" \"${SRCROOT}/..\" ; fi";
 			showEnvVarsInLog = 0;
 		};
 		92F32CBA0CB54133BD9EEFE4 /* [CP-User] SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			name = "[CP-User] SwiftFormat";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"Debug\" == \"${CONFIGURATION}\" ]; then \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --swiftversion ${SWIFT_VERSION} --config \"${PODS_ROOT}/SwiftQuality/.swiftformat\" \"${SRCROOT}/..\" ; fi";
+			shellScript = "if [[ \"Debug\" == \"${CONFIGURATION}\" && ! $ENABLE_PREVIEWS == \"YES\" ]]; then \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --swiftversion ${SWIFT_VERSION} --config \"${PODS_ROOT}/SwiftQuality/.swiftformat\" \"${SRCROOT}/..\" ; fi";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
