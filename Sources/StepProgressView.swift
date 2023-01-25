@@ -198,24 +198,25 @@ open class StepProgressView: UIView {
         needsColor = false
 
         let n = stepViews.count
-        if currentStep < n {
-            // color future steps
-            stepViews[currentStep + 1 ..< n].forEach {
+
+        // color future steps
+        if currentStep < n - 1 {
+            stepViews[max(0, currentStep + 1) ..< n].forEach {
                 $0.color(text: futureTextColor, detail: futureTextColor, stroke: futureStepColor, fill: futureStepFillColor, line: futureStepColor)
             }
+        }
 
-            // color current step
-            if currentStep >= 0 {
-                let textColor: UIColor = currentTextColor ?? tintColor
-                let detailColor = currentDetailColor ?? textColor
-                stepViews[currentStep].color(
-                    text: textColor,
-                    detail: detailColor,
-                    stroke: textColor,
-                    fill: currentStepFillColor,
-                    line: futureStepColor
-                )
-            }
+        // color current step
+        if currentStep < n && currentStep >= 0 {
+            let textColor: UIColor = currentTextColor ?? tintColor
+            let detailColor = currentDetailColor ?? textColor
+            stepViews[currentStep].color(
+                text: textColor,
+                detail: detailColor,
+                stroke: textColor,
+                fill: currentStepFillColor,
+                line: futureStepColor
+            )
         }
 
         // color past steps
