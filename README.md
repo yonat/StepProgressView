@@ -103,7 +103,7 @@ Legacy versions:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yonat/StepProgressView", from: "1.6.1")
+    .package(url: "https://github.com/yonat/StepProgressView", from: "1.6.2")
 ]
 ```
 
