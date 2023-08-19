@@ -34,6 +34,7 @@ progressView.currentStep = 4 // all done
 
   s.source       = { :git => "https://github.com/yonat/StepProgressView.git", :tag => s.version }
   s.source_files  = "Sources/*.swift"
+  s.resources = ['PrivacyInfo.xcprivacy']
 
   s.dependency 'SweeterSwift'
 
